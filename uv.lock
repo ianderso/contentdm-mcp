@@ -167,6 +167,7 @@ wheels = [
 name = "contentdm-mcp"
 source = { editable = "." }
 dependencies = [
+    { name = "httpcore" },
     { name = "httpx" },
     { name = "mcp" },
     { name = "pydantic" },
@@ -184,7 +185,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "httpx", specifier = ">=0.27" },
+    { name = "httpcore", specifier = ">=1.0" },
+    { name = "httpx", specifier = ">=0.27,<1" },
     { name = "mcp", specifier = ">=2.0.0,<3" },
     { name = "pydantic", specifier = ">=2.6" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.2" },

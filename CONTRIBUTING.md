@@ -30,8 +30,8 @@ institution's own server, and CI should not depend on any of them being up.
 | `src/contentdm_mcp/server.py` | The tools. Their docstrings and `Field` descriptions *are* the published tool descriptions and schema. |
 | `src/contentdm_mcp/adapters/base.py` | The interface every platform adapter provides, and the records it returns. |
 | `src/contentdm_mcp/adapters/classic.py` | Classic CONTENTdm: the `dmwebservices` calls, IIIF, and item addresses. |
-| `src/contentdm_mcp/client.py` | The cached, paced HTTP client, the host allowlist and the redirect rule. |
-| `src/contentdm_mcp/instances.py` | Loading the curated list, and checking an address given as an instance. |
+| `src/contentdm_mcp/client.py` | The cached, paced HTTP client, the host allowlist, the redirect rule, the public-address check made at connect time, and the size caps. |
+| `src/contentdm_mcp/instances.py` | Loading the curated list and the operator's, and the host policy an address given as an instance must pass. |
 | `src/contentdm_mcp/instances.yaml` | The curated list itself. |
 | `src/contentdm_mcp/shape.py` | Turning records into results: kinds, labels, the citation core. |
 | `src/contentdm_mcp/config.py` | Settings from the environment and `.env`. |
@@ -39,6 +39,7 @@ institution's own server, and CI should not depend on any of them being up.
 | `docs/DESIGN.md` | Why the server is shaped the way it is, and what is out of scope by decision. |
 | `tests/fixtures/` | Recorded responses and the tool-schema snapshot. |
 | `tests/test_tool_contract.py` | Tests over the tool surface as a client sees it. |
+| `tests/test_security.py` | Every refusal against a steered model: hosts, addresses, sizes, files. |
 | `tests/live_check.py` | The one script that talks to live sites, run by hand. Not collected. |
 
 ## What a change carries
@@ -65,6 +66,13 @@ failing and fails if one raises.
 
 **Nothing that writes to a site, and nothing that works around a bot check.**
 See [docs/DESIGN.md](docs/DESIGN.md#out-of-scope-by-decision).
+
+**Nothing that widens what an argument can reach.** Treat every argument as
+written by someone else's text. A new kind of host goes through the policy in
+`instances.resolve`, a new place to write through `server._destination`, and
+each comes with a test in `tests/test_security.py` showing that the refusals
+still come before the harm. See
+[docs/DESIGN.md](docs/DESIGN.md#which-hosts-a-tool-reaches).
 
 **A new fixture recorded, not invented,** when a change depends on how a site
 answers, with what was observed and when added to `docs/API-NOTES.md`. Keep

@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import html
 import re
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote, urlsplit
@@ -114,12 +115,19 @@ def file_type(find: object) -> str:
     return name.rsplit(".", 1)[-1].lower() if "." in name else ""
 
 
-def parse_item_url(url: object) -> tuple[Instance, str, int] | None:
+def parse_item_url(url: object, extra: Sequence[Instance] = ()) -> tuple[Instance, str, int] | None:
     """The instance, alias and pointer an item address names, or None.
 
     Accepts ``/digital/collection/{alias}/id/{n}``, the CONTENTdm 6 forms
     (``/cdm/ref/...``, ``/cdm/compoundobject/...``), and IIIF addresses. The
-    host must be one ``resolve`` accepts.
+    host must be one ``resolve`` accepts with the operator's sites in
+    ``extra``: a DPLA ``isShownAt`` on a site's own domain is refused unless
+    that site is curated or added, before anything is looked up.
+
+    Raises
+    ------
+    DisallowedHost
+        For an item address on a host the policy does not allow.
     """
     text = str(url or "").strip()
     parts = urlsplit(text)
@@ -130,7 +138,7 @@ def parse_item_url(url: object) -> tuple[Instance, str, int] | None:
             alias = valid_alias(match["alias"])
             if alias is None:
                 return None
-            instance = resolve(f"https://{parts.netloc}")
+            instance = resolve(f"https://{parts.netloc}", extra)
             return instance, alias, int(match["ptr"])
     return None
 

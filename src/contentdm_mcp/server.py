@@ -10,6 +10,11 @@ moves to the new CONTENTdm or to Quartex needs a new adapter, not new tools.
 
 Nothing here writes anywhere. One tool, ``get_image``, creates a local file,
 and never overwrites one.
+
+Every argument may have been written by injected text, so the hosts a tool can
+reach and the files ``get_image`` can create are both narrowed before any
+work: :func:`contentdm_mcp.instances.resolve` applies the host policy, and
+:func:`_destination` the rules for a new file.
 """
 
 from __future__ import annotations
@@ -18,6 +23,7 @@ import asyncio
 import inspect
 import json
 import logging
+import os
 from pathlib import Path
 from typing import Any, Literal
 
@@ -29,9 +35,9 @@ from . import __version__
 from .adapters import Adapter, Unsupported, adapter_for
 from .adapters.base import Hit
 from .adapters.classic import parse_item_url, valid_alias, valid_nick
-from .client import CdmError, CdmHttp, HostNotAllowed
+from .client import IMAGE_SUFFIXES, CdmError, CdmHttp, HostNotAllowed, PrivateAddress
 from .config import Config, ConfigError, load_config
-from .instances import Instance, UnknownInstance, curated, resolve
+from .instances import DisallowedHost, Instance, UnknownInstance, curated, resolve
 from .shape import (
     DESCRIPTION_CHARS,
     citation,
@@ -66,6 +72,13 @@ MAX_PARENT_TITLES = 10
 
 #: Most transcript characters get_item returns per field.
 MAX_TEXT_CHARS = 50_000
+
+#: Description of an ``instance`` argument naming one site.
+INSTANCE_DOC = "A key from list_instances, or an https://NAME.contentdm.oclc.org address."
+
+#: The format get_image asks the image service for, and so the suffixes a
+#: destination may have.
+IMAGE_FORMAT = "jpeg"
 
 #: Description of the cache-bypass flag.
 REFRESH_DOC = (
@@ -121,6 +134,16 @@ class _State:
         self.config: Config | None = None
         self.http: CdmHttp | None = None
 
+    def config_(self) -> Config:
+        """Return the configuration, loading it on first use."""
+        if self.config is None:
+            self.config = load_config()
+        return self.config
+
+    def extra(self) -> tuple[Instance, ...]:
+        """The operator's own sites, from the configuration."""
+        return self.config_().extra_instances
+
     async def http_(self) -> CdmHttp:
         """Return the HTTP client, building it on first use."""
         if self.http is None:
@@ -144,6 +167,8 @@ def _error(exc: BaseException) -> dict:
     """Render an exception as a structured tool result."""
     if isinstance(exc, ConfigError):
         return {"error": "not_configured", "message": str(exc)}
+    if isinstance(exc, DisallowedHost):
+        return {"error": "host_not_allowed", "host": exc.host, "message": str(exc)}
     if isinstance(exc, UnknownInstance):
         return {"error": "unknown_instance", "message": str(exc)}
     if isinstance(exc, Unsupported):
@@ -151,6 +176,8 @@ def _error(exc: BaseException) -> dict:
         if exc.instance.moved_to:
             out["moved_to"] = exc.instance.moved_to
         return out
+    if isinstance(exc, PrivateAddress):
+        return {"error": "private_address", "message": str(exc)}
     if isinstance(exc, HostNotAllowed):
         return {"error": "host_not_allowed", "message": str(exc)}
     if isinstance(exc, CdmError):
@@ -169,7 +196,14 @@ def _site_error(exc: CdmError) -> dict:
             "error": "no_such_collection",
             "message": f"{exc.detail}. Use an alias that list_collections gives.",
         }
-    if code in ("not_found", "not_compound", "not_an_image", "no_such_page", "too_large"):
+    if code in (
+        "not_found",
+        "not_compound",
+        "not_an_image",
+        "no_such_page",
+        "too_large",
+        "extension_mismatch",
+    ):
         return {"error": code, "message": exc.detail}
     if code == "challenge":
         return {"error": "blocked", "message": exc.detail.capitalize() + "."}
@@ -220,9 +254,9 @@ def _site_error(exc: CdmError) -> dict:
 # Shared steps
 # --------------------------------------------------------------------------- #
 async def _adapter(instance: object) -> Adapter:
-    """Resolve an instance argument and build its adapter."""
+    """Resolve an instance argument under the host policy and build its adapter."""
     http = await runtime.http_()
-    return adapter_for(resolve(instance), http)
+    return adapter_for(resolve(instance, runtime.extra()), http)
 
 
 async def _target(
@@ -235,7 +269,8 @@ async def _target(
                 "error": "conflicting_target",
                 "message": "Pass url, or instance with collection and pointer; not both.",
             }
-        parsed = parse_item_url(url)
+        http = await runtime.http_()
+        parsed = parse_item_url(url, runtime.extra())
         if parsed is None:
             return {
                 "error": "invalid_url",
@@ -243,7 +278,7 @@ async def _target(
                 "https://site/digital/collection/{alias}/id/{number}.",
             }
         inst, alias, ptr = parsed
-        return adapter_for(inst, await runtime.http_()), alias, ptr
+        return adapter_for(inst, http), alias, ptr
     alias = valid_alias(collection)
     ptr_text = str(pointer).strip()
     if not instance.strip() or alias is None or not ptr_text.isdigit():
@@ -356,17 +391,18 @@ async def list_instances(
         default=True, description="Also list sites that have left CONTENTdm or are blocked."
     ),
 ) -> dict:
-    """List the curated CONTENTdm sites: who runs each, what it holds, when checked.
+    """List the curated CONTENTdm sites, and any the operator added: who runs each, what it holds.
 
     Makes no network call. Each `instance` value is what the other tools take.
     Sites that have left CONTENTdm stay listed with where they went. Any other
-    CONTENTdm site works too: pass its https address as `instance`.
+    CONTENTdm site works by its https://cdmNNNNN.contentdm.oclc.org address,
+    which every site has; other hosts are refused.
     """
     try:
         wanted = _states(state)
         rows = [
-            e.summary()
-            for e in curated()
+            {**e.summary(), **({"added_by": "operator"} if e.operator else {})}
+            for e in (*curated(), *runtime.extra())
             if (not wanted or e.state in wanted) and (include_unsupported or e.supported)
         ]
         return {
@@ -380,10 +416,7 @@ async def list_instances(
 
 @mcp.tool(annotations=READS_SITE)
 async def list_collections(
-    instance: str = Field(
-        description="A key from list_instances, e.g. 'tn-tsla', or a CONTENTdm site's "
-        "https address."
-    ),
+    instance: str = Field(description=INSTANCE_DOC),
     name_contains: str = Field(default="", description="Keep collections whose name has this."),
     refresh: bool = Field(default=False, description=REFRESH_DOC),
 ) -> dict:
@@ -423,7 +456,7 @@ async def list_collections(
 
 @mcp.tool(annotations=READS_SITE)
 async def get_collection(
-    instance: str = Field(description="A key from list_instances, or a site's https address."),
+    instance: str = Field(description=INSTANCE_DOC),
     collection: str = Field(description="The collection's alias, from list_collections."),
     refresh: bool = Field(default=False, description=REFRESH_DOC),
 ) -> dict:
@@ -468,8 +501,8 @@ async def search(
     ),
     instance: str | list[str] | None = Field(
         default=None,
-        description="One site (a key or an https address), a list of keys, or omit "
-        "for every supported curated site.",
+        description="One site (a key, or an https://NAME.contentdm.oclc.org address), a "
+        "list of them, or omit for every supported curated site.",
     ),
     collection: str = Field(default="", description="An alias, with one instance only."),
     field: str = Field(
@@ -530,7 +563,7 @@ async def search(
         not_searched: list[dict] = []
         if names:
             for name in dict.fromkeys(names):
-                targets.append(resolve(name))
+                targets.append(resolve(name, runtime.extra()))
         else:
             wanted = _states(state)
             targets = [e for e in curated() if not wanted or e.state in wanted]
@@ -622,7 +655,7 @@ async def _fan_out(
 
 @mcp.tool(annotations=READS_SITE)
 async def get_item(
-    instance: str = Field(default="", description="A key from list_instances, or a site address."),
+    instance: str = Field(default="", description=INSTANCE_DOC),
     collection: str = Field(default="", description="The collection alias."),
     pointer: str = Field(default="", description="The item's number, e.g. '16539'."),
     url: str = Field(
@@ -640,7 +673,9 @@ async def get_item(
     `text` is a lead, not the record: read the image (get_image). A compound
     object's own text is usually empty; its pages carry it (get_pages). For a
     page, `page_of` names the object and page number. `cite_as` is the
-    institution's own citation where it gives one; `rights` its terms.
+    institution's own citation where it gives one; `rights` its terms. An
+    address on an unlisted site's own domain is refused: use its
+    cdmNNNNN.contentdm.oclc.org form.
     """
     try:
         target = await _target(instance, collection, pointer, url)
@@ -722,7 +757,7 @@ async def get_item(
 
 @mcp.tool(annotations=READS_SITE)
 async def get_pages(
-    instance: str = Field(default="", description="A key from list_instances, or a site address."),
+    instance: str = Field(default="", description=INSTANCE_DOC),
     collection: str = Field(default="", description="The collection alias."),
     pointer: str = Field(default="", description="The compound object's number."),
     url: str = Field(default="", description="Instead of the three above: the object's address."),
@@ -809,10 +844,10 @@ async def get_pages(
 @mcp.tool(annotations=CREATES_LOCAL_FILE)
 async def get_image(
     destination: str = Field(
-        description="Absolute path of a new file, e.g. '/tmp/tn-death-1965-p152.jpg'. The "
-        "directory must exist and the file must not: nothing is overwritten."
+        description="Absolute path of a new .jpg file, e.g. '/path/to/images/page-461.jpg'. "
+        "The directory must exist and the file must not: nothing is overwritten."
     ),
-    instance: str = Field(default="", description="A key from list_instances, or a site address."),
+    instance: str = Field(default="", description=INSTANCE_DOC),
     collection: str = Field(default="", description="The collection alias."),
     pointer: str = Field(default="", description="The item's or page's number."),
     url: str = Field(default="", description="Instead of the three above: the item's address."),
@@ -830,21 +865,16 @@ async def get_image(
     """Download one page image through the site's IIIF service, so it can be read.
 
     This is the step that turns a hit into evidence. The image is written as
-    a JPEG to `destination`, never returned inline. Audio and video cannot be
-    rendered. Cite the page by the `citation` returned, not by the file.
+    a JPEG to `destination`, never returned inline: a new .jpg or .jpeg file,
+    not hidden, not under ~/Library, and inside the operator's download
+    folder when one is set. Audio and video cannot be rendered. Cite the page
+    by the `citation` returned, not by the file.
     """
     try:
-        target_path = Path(destination).expanduser()
-        if not target_path.is_absolute():
-            return {"error": "relative_destination", "message": "destination must be absolute."}
-        target_path = target_path.resolve()
-        if not target_path.parent.is_dir():
-            return {
-                "error": "no_such_directory",
-                "message": f"{target_path.parent} does not exist.",
-            }
-        if target_path.exists():
-            return _destination_exists(target_path)
+        await runtime.http_()
+        target_path = _destination(destination, runtime.config_().download_dir)
+        if isinstance(target_path, dict):
+            return target_path
         if max_pixels < 0 or (max_pixels and max_pixels < 100):
             return {"error": "bad_size", "message": "max_pixels is 0 or at least 100."}
         target = await _target(instance, collection, pointer, url)
@@ -883,6 +913,7 @@ async def get_image(
                 alias, image_ptr, target_path, longest_side=max_pixels or None, pdf_page=pdf_page
             )
         except FileExistsError:
+            # Created by something else between the check above and now.
             return _destination_exists(target_path)
         title = title_of(item)
         page_url = adapter.item_url(alias, image_ptr)
@@ -918,6 +949,95 @@ def _destination_exists(target: Path) -> dict:
         "message": f"{target} already exists. This tool never overwrites a file; "
         "choose a new file name.",
     }
+
+
+def _destination(destination: str, download_dir: Path | None) -> Path | dict:
+    """The file get_image may create for ``destination``, or a structured refusal.
+
+    The path can come from injected text, so it is held to what a page image
+    needs and nothing that runs later can use: an absolute path; a new file,
+    not even a dangling link; the suffix of the format asked for, so no
+    ``.plist`` or ``.sh``; no hidden component, so no dotfile, ``.ssh`` or
+    ``.git/hooks``; nothing under ``~/Library``, where launch agents live;
+    and, when ``CONTENTDM_DOWNLOAD_DIR`` is set, inside that folder. Every
+    check is made on the path with its links resolved, and folders are
+    compared as files, so a case-insensitive disk cannot slip one past.
+    Below the download folder only: a hidden folder the operator chose as the
+    download folder is theirs to choose, and so is one inside ``~/Library``
+    (an iCloud Drive folder, say).
+    """
+    given = Path(destination).expanduser()
+    if not given.is_absolute():
+        return {"error": "relative_destination", "message": "destination must be absolute."}
+    if os.path.lexists(given):
+        return _destination_exists(given)
+    # Resolved so every rule sees where the file would really land, and so
+    # the answer says where it went.
+    target = given.resolve()
+    suffixes = IMAGE_SUFFIXES[IMAGE_FORMAT]
+    if target.suffix.lower() not in suffixes:
+        return {
+            "error": "bad_extension",
+            "message": f"get_image saves a JPEG: end the file name in {' or '.join(suffixes)}.",
+        }
+    below = target.parts[1:]
+    if download_dir is not None:
+        inside = _within(target, download_dir)
+        if inside is None:
+            return {
+                "error": "outside_download_dir",
+                "message": f"This server saves images only inside {download_dir} "
+                f"(CONTENTDM_DOWNLOAD_DIR), and {target} is not inside it.",
+            }
+        below = inside
+    if hidden := next((part for part in below if part.startswith(".")), None):
+        return {
+            "error": "hidden_path",
+            "message": f"{target} is or is inside a hidden file or folder ({hidden}). "
+            "Choose a visible folder.",
+        }
+    library = Path.home() / "Library"
+    if _within(target, library) is not None and (
+        download_dir is None or _within(download_dir, library) is None
+    ):
+        return {
+            "error": "protected_location",
+            "message": f"{target} is under ~/Library, where files are loaded at login. "
+            "Choose another folder; to save inside ~/Library (an iCloud Drive folder, "
+            "say), the operator sets CONTENTDM_DOWNLOAD_DIR to it.",
+        }
+    if not target.parent.is_dir():
+        return {"error": "no_such_directory", "message": f"{target.parent} does not exist."}
+    if target.exists():
+        return _destination_exists(target)
+    return target
+
+
+def _within(path: Path, root: Path) -> tuple[str, ...] | None:
+    """The parts of ``path`` below ``root``, or None if it is not inside ``root``.
+
+    Folders are compared by identity (device and inode), not by spelling: on
+    a case-insensitive disk ``~/library`` is ``~/Library``, and a folder
+    reached through a link is the folder itself. A file system that numbers
+    no inodes (FAT) is compared by resolved path instead.
+    """
+    try:
+        root_id = os.stat(root)
+        root_path = os.path.normcase(str(root.resolve()))
+    except OSError:
+        return None
+    for ancestor in (path, *path.parents):
+        try:
+            here = os.stat(ancestor)
+        except OSError:
+            continue
+        if root_id.st_ino:
+            same = (here.st_dev, here.st_ino) == (root_id.st_dev, root_id.st_ino)
+        else:
+            same = os.path.normcase(str(ancestor)) == root_path
+        if same:
+            return path.parts[len(ancestor.parts) :]
+    return None
 
 
 @mcp.tool(annotations=LOCAL_ONLY)

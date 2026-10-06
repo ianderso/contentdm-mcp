@@ -80,19 +80,21 @@ async def test_an_address_oclc_does_not_know_is_not_contentdm(sites):
 
 
 async def test_a_site_that_no_longer_speaks_the_classic_api_is_named_so(sites):
-    sites.route(host="example.org").mock(
+    sites.route(host="moved.contentdm.oclc.org").mock(
         return_value=httpx.Response(403, text="<!DOCTYPE html><html>Quartex</html>")
     )
-    out = await call_tool("list_collections", instance="https://example.org")
+    out = await call_tool("list_collections", instance="https://moved.contentdm.oclc.org")
     assert out["error"] == "not_classic_contentdm" and "new CONTENTdm" in out["message"]
 
 
 async def test_a_site_that_redirects_elsewhere_has_moved(sites):
-    sites.route(host="example.org").mock(
+    sites.route(host="moved.contentdm.oclc.org").mock(
         return_value=httpx.Response(301, headers={"location": "https://elsewhere.org/404/"})
     )
-    out = await call_tool("list_collections", instance="https://example.org")
+    elsewhere = sites.route(host="elsewhere.org").mock(return_value=httpx.Response(200))
+    out = await call_tool("list_collections", instance="https://moved.contentdm.oclc.org")
     assert out["error"] == "moved" and out["location"] == "https://elsewhere.org/404/"
+    assert elsewhere.call_count == 0
 
 
 async def test_get_collection_marks_the_text_field(sites):

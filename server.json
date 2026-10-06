@@ -37,6 +37,14 @@
         {
           "name": "CONTENTDM_CONTACT",
           "description": "An email address or URL appended to the User-Agent, so an institution can reach whoever runs the server."
+        },
+        {
+          "name": "CONTENTDM_EXTRA_INSTANCES",
+          "description": "More CONTENTdm sites a tool may reach, beyond the curated ones and *.contentdm.oclc.org: https base URLs separated by commas, or the absolute path of a YAML file shaped like instances.yaml."
+        },
+        {
+          "name": "CONTENTDM_DOWNLOAD_DIR",
+          "description": "An existing folder. When set, get_image saves only inside it; needed to save under ~/Library, such as an iCloud Drive folder."
         }
       ]
     }

@@ -55,9 +55,9 @@ The server publishes eight tools. All but `get_image` are read-only;
 
 | Tool | Purpose |
 | --- | --- |
-| `get_item` | One item: metadata, transcript or OCR text, the institution's own "cite as" line and rights statement, and the citation core. For a page, which object and page number it is. Takes an item address, such as DPLA's `isShownAt`. |
+| `get_item` | One item: metadata, transcript or OCR text, the institution's own "cite as" line and rights statement, and the citation core. For a page, which object and page number it is. Takes an item address, such as DPLA's `isShownAt`, on a site it may reach. |
 | `get_pages` | A compound object's pages in order, with `query` to mark the pages that match. |
-| `get_image` | Download one page image through the site's IIIF service, sized to fit, including any page of a multi-page PDF. |
+| `get_image` | Download one page image through the site's IIIF service, sized to fit, including any page of a multi-page PDF. Saves a new `.jpg`, never a hidden file or one under `~/Library`. |
 | `cache_status` | This session's requests, by site, and cache use. Makes no request. |
 
 ## The curated sites
@@ -92,8 +92,13 @@ where they went:
 | PA | POWER Library | moved to Islandora |
 | WI | Wisconsin Historical Society | moved to its own site |
 
-Any other CONTENTdm site works too: pass its https address as `instance`.
-There are more than 675 of them, and no registry.
+Any other CONTENTdm site works too, at its `cdmNNNNN.contentdm.oclc.org`
+address: pass `https://cdmNNNNN.contentdm.oclc.org` as `instance`. Every
+classic site answers there, whatever its own domain, and the source of its
+pages names the number (`"cdmServerUrl": "serverNNNNN.contentdm.oclc.org"`).
+There are more than 675 of them, and no registry. To use a site by its own
+domain, add it to `CONTENTDM_EXTRA_INSTANCES`; a tool argument cannot, for the
+reason under [Security](#security).
 
 ## Setup
 
@@ -152,6 +157,8 @@ supplies anything the environment does not; only that directory is read.
 | `CONTENTDM_TIMEOUT` | HTTP timeout in seconds for one request. Default 30. Image downloads get 120 to read. |
 | `CONTENTDM_MIN_INTERVAL` | Least seconds between two requests to one site. Default 1, and never below 0.5. |
 | `CONTENTDM_CONTACT` | An email address or URL added to the User-Agent, so an institution can reach you if your use causes trouble. Optional, and courteous. |
+| `CONTENTDM_EXTRA_INSTANCES` | More sites a tool may reach by their own domain: https base URLs separated by commas, or the absolute path of a YAML file whose entries are shaped like [`instances.yaml`](src/contentdm_mcp/instances.yaml)'s (only `base_url` is required). `list_instances` lists them; a search of every site leaves them out. |
+| `CONTENTDM_DOWNLOAD_DIR` | An existing folder. When set, `get_image` saves only inside it. Set it to save into an iCloud Drive folder, which lives under `~/Library`. |
 
 An unusable value is reported on the first tool call as a `not_configured`
 result naming the variable.
@@ -213,16 +220,33 @@ several ask for permission before publication.
 
 ## Security
 
-- **Known hosts only.** A request hook refuses any host that is not a
-  curated site's address or an https address the caller gave as `instance`,
-  and a given address is refused if it is an IP address, a local name or
-  carries a port or credentials. Redirects are followed only between a host
-  and its `www.` twin.
+Tool arguments are written by a model, and the model reads text this server
+does not control: titles, transcripts, DPLA records, web pages. The server
+assumes that text can steer the model, and limits what a steered model can
+make it do.
+
+- **Which hosts.** A tool reaches the curated sites, any address under
+  `contentdm.oclc.org` (OCLC's own servers), and the sites you list in
+  `CONTENTDM_EXTRA_INSTANCES`. Any other host is refused before it is even
+  looked up, because a DNS query for `secret.attacker.example` would already
+  deliver the name; the refusal says how to reach the site instead.
+- **Which addresses.** Each connection is checked where it is made: a name
+  that leads to a private, loopback, link-local, CGNAT, multicast, reserved or
+  unspecified address, IPv4 or IPv6, is refused, and the connection goes to
+  the address that was checked. Redirects are followed only between an
+  instance's own hosts, and are checked again. Proxy settings in the
+  environment are not used.
+- **How much.** A JSON answer over 10 MB, or an image over 60 MB, is refused
+  as it streams in.
+- **Which files.** `get_image` creates one new file and never overwrites one.
+  The bytes must be an image, judged by their first bytes rather than the
+  Content-Type, and of the format the file's suffix names: `.jpg` or `.jpeg`.
+  Never a hidden file or folder, never under `~/Library`, and with
+  `CONTENTDM_DOWNLOAD_DIR` set, never outside it, all judged after links are
+  resolved. A refused download leaves nothing on disk.
 - **Arguments are validated** (collection aliases, field nicks, numeric
   pointers) before they reach a request, and search words are stripped of the
   API's own syntax characters.
-- **`get_image` writes only the file it is given,** creating it exclusively,
-  and removes it if the download fails.
 - **Site text is untrusted.** Titles, descriptions and transcripts reach the
   model verbatim. The server's instructions tell the model to treat that text
   as material to weigh, never as instructions; the model still decides, so

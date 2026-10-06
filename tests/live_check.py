@@ -11,11 +11,15 @@ site, a second apart; different sites side by side):
   York's page in the Tennessee death index, Raphael Semmes's logbook, Juliette
   Gordon Low's death certificate, an Ohio Memory alias, a Missouri county
   history, and how phrase and prefix searches match;
+* the host policy holds against real DNS: a vanity site still answers at its
+  ``cdmNNNNN.contentdm.oclc.org`` address, which is what makes refusing other
+  hosts cheap, and an unlisted host is still refused;
 * a search of every curated site still comes back from all of them.
 
 It is not a test module: pytest does not collect it, and CI never runs it,
 because the suite must never depend on someone else's server being up. Two
-images are downloaded to a temporary directory and deleted.
+images are downloaded to a temporary directory, set as the download folder,
+and deleted.
 
 Exit status 0 if every check passed, 1 if any failed.
 """
@@ -148,12 +152,30 @@ CHECKS: list[tuple[str, dict, Callable[[dict], bool], str]] = [
         "a Monograph's one-page section is still an object and still read",
     ),
     (
+        "list_collections",
+        {
+            "instance": "https://cdm17217.contentdm.oclc.org",
+            "name_contains": "Alabama Textual Materials",
+        },
+        lambda r: r["collections"][0]["collection"] == "voices",
+        "ADAH answers at its OCLC address, cdm17217, as at its own domain",
+    ),
+    (
+        "get_item",
+        {"url": "https://digital.library.example.edu/digital/collection/p16044coll1/id/5"},
+        lambda r: r["error"] == "host_not_allowed" and "cdmNNNNN" in r["message"],
+        "an item address on an unlisted domain is refused, naming the way forward",
+    ),
+    (
         "search",
         {"query": "semmes"},
         lambda r: not r["failed"] and not r["timed_out"],
         "a search of every curated site: all answer",
     ),
 ]
+
+#: Checks whose expected answer is a refusal.
+REFUSALS = {"an item address on an unlisted domain is refused, naming the way forward"}
 
 
 async def reach(http: CdmHttp) -> int:
@@ -186,7 +208,7 @@ async def main() -> int:
         http = CdmHttp(
             Path(cache), timeout=cfg.timeout, min_interval=cfg.min_interval, contact=cfg.contact
         )
-        server.runtime.config = cfg
+        server.runtime.config = dataclasses.replace(cfg, download_dir=Path(tmp))
         server.runtime.http = http
         failed = await reach(http)
         for tool, args, check, meaning in CHECKS:
@@ -195,7 +217,7 @@ async def main() -> int:
             }
             result = json.loads((await server.mcp.call_tool(tool, args)).content[0].text)
             try:
-                ok = "error" not in result and bool(check(result))
+                ok = ("error" not in result or meaning in REFUSALS) and bool(check(result))
             except (KeyError, IndexError, TypeError):
                 ok = False
             failed += not ok

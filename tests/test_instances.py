@@ -9,10 +9,13 @@ import pytest
 from contentdm_mcp.instances import (
     PLATFORMS,
     STATUSES,
+    DisallowedHost,
     UnknownInstance,
     base_url_problem,
     by_key,
     curated,
+    is_oclc_host,
+    operator_instances,
     resolve,
 )
 
@@ -96,7 +99,127 @@ def test_a_pasted_page_address_keeps_only_the_site():
 def test_another_contentdm_site_becomes_an_ad_hoc_instance():
     entry = resolve("https://example.contentdm.oclc.org")
     assert entry.base_url == "https://example.contentdm.oclc.org"
-    assert entry.supported and not entry.curated
+    assert entry.supported and not entry.curated and not entry.operator
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "https://cdm16044.contentdm.oclc.org",
+        "https://CDM16044.ContentDM.OCLC.org/",
+        "https://cdm16044.contentdm.oclc.org./digital/collection/p16044coll1/id/5",
+        "https://www.cdm16044.contentdm.oclc.org",
+        "https://cdm16044.contentdm.oclc.org:443",
+    ],
+)
+def test_any_site_under_oclcs_domain_is_accepted_and_normalised(value):
+    entry = resolve(value)
+    assert entry.base_url in (
+        "https://cdm16044.contentdm.oclc.org",
+        "https://www.cdm16044.contentdm.oclc.org",
+    )
+    assert entry.key == entry.base_url and not entry.curated
+
+
+@pytest.mark.parametrize(
+    "host",
+    [
+        "contentdm.oclc.org",
+        "a.b.contentdm.oclc.org",
+        "cdm1.contentdm.oclc.org.attacker.example",
+        "cdm1-contentdm.oclc.org",
+        "evilcontentdm.oclc.org",
+        "cdm1.contentdm.oclc.org.",
+        "-cdm1.contentdm.oclc.org",
+    ],
+)
+def test_only_one_label_under_oclcs_domain_counts_as_oclcs(host):
+    expected = host == "cdm1.contentdm.oclc.org."  # a trailing dot is the same name
+    assert is_oclc_host(host) is expected
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "https://digital.library.example.edu",
+        "https://c2VjcmV0IGRhdGE.attacker.example",
+        "https://cdm1.contentdm.oclc.org.attacker.example",
+        "https://a.b.contentdm.oclc.org",
+        "https://oclc.org",
+    ],
+)
+def test_any_other_host_is_refused_naming_both_ways_forward(value):
+    with pytest.raises(DisallowedHost) as caught:
+        resolve(value)
+    message = str(caught.value)
+    assert caught.value.host == value.removeprefix("https://").lower()
+    assert "https://cdmNNNNN.contentdm.oclc.org" in message
+    assert "CONTENTDM_EXTRA_INSTANCES" in message
+
+
+def test_an_item_address_on_an_unlisted_domain_is_refused_the_same_way():
+    with pytest.raises(DisallowedHost, match="CONTENTDM_EXTRA_INSTANCES"):
+        resolve("https://digital.library.example.edu/digital/collection/p16044coll1/id/5")
+
+
+def test_an_operator_site_resolves_by_key_and_by_address(tmp_path):
+    listed = tmp_path / "sites.yaml"
+    listed.write_text(
+        "- key: ex-county\n"
+        "  institution: Example County Archives\n"
+        "  base_url: https://records.example.gov\n"
+        "  state: TX\n"
+    )
+    extra = operator_instances(str(listed))
+    assert resolve("ex-county", extra).institution == "Example County Archives"
+    assert resolve("https://www.records.example.gov/digital/", extra).key == "ex-county"
+    with pytest.raises(DisallowedHost):
+        resolve("https://records.example.gov")  # without the operator's list
+
+
+def test_an_operator_list_of_addresses_needs_nothing_else():
+    one, two = operator_instances(" https://records.example.gov/, https://cdm.example.org ")
+    assert (one.key, one.base_url, one.institution) == (
+        "https://records.example.gov",
+        "https://records.example.gov",
+        "records.example.gov",
+    )
+    assert one.operator and not one.curated and one.supported
+    assert two.base_url == "https://cdm.example.org"
+
+
+@pytest.mark.parametrize(
+    ("setting", "complaint"),
+    [
+        ("http://records.example.gov", "not an https"),
+        ("https://10.0.0.5", "IP address"),
+        ("https://archives.local", "local name"),
+        ("https://records.example.gov/digital", "has a path"),
+        ("https://digital.archives.alabama.gov", "already belongs to al-adah"),
+        ("https://a.example.org, https://a.example.org", "used by another entry"),
+        ("relative/sites.yaml", "absolute path"),
+    ],
+)
+def test_an_unusable_operator_setting_is_refused(setting, complaint):
+    with pytest.raises(ValueError, match=complaint):
+        operator_instances(setting)
+
+
+@pytest.mark.parametrize(
+    ("body", "complaint"),
+    [
+        ("- key: al-adah\n  base_url: https://records.example.gov\n", "used by a curated"),
+        ("- base_url: https://records.example.gov\n  owner: me\n", "unknown fields"),
+        ("- key: Not A Key\n  base_url: https://records.example.gov\n", "bad key"),
+        ("- institution: Nobody\n", "no base_url"),
+        ("key: ex-county\n", "must hold a list"),
+    ],
+)
+def test_an_unusable_operator_file_is_refused(tmp_path, body, complaint):
+    listed = tmp_path / "sites.yaml"
+    listed.write_text(body)
+    with pytest.raises(ValueError, match=complaint):
+        operator_instances(str(listed))
 
 
 @pytest.mark.parametrize(
