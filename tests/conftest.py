@@ -224,6 +224,11 @@ LOCAL_VALIDATION_ERRORS = frozenset(
         "no_such_directory",
         "destination_exists",
         "relative_destination",
+        "host_not_allowed",
+        "bad_extension",
+        "hidden_path",
+        "protected_location",
+        "outside_download_dir",
     }
 )
 

@@ -18,7 +18,13 @@ calls in all, paced at least a second apart per site.
   `*.contentdm.oclc.org` host it redirects to OCLC's not-found page.
 - **Every vanity domain has a `cdmNNNNN.contentdm.oclc.org` twin** answering
   the same API. The number is in each collection's `path` in the collection
-  list (`/cdm/sites/17217/data/voices`).
+  list (`/cdm/sites/17217/data/voices`). It is also in the source of the
+  classic website's pages, whose configuration names
+  `"cdmServerUrl": "serverNNNNN.contentdm.oclc.org:8888"`: `server17217` on an
+  ADAH item page and `server16007` on an Ohio Memory one, both checked
+  2026-10-06, when `cdm17217.contentdm.oclc.org` answered ADAH's collection
+  list. Aliases CONTENTdm generated (`p16007coll41`) usually carry the site's
+  number, but not always: Ohio Memory also hosts `p15005coll1`.
 - **Two public hosts send an incomplete certificate chain:**
   `vault.georgiaarchives.org` and `kdl.kyvl.org`. Browsers and macOS curl
   fetch the missing intermediate; Python's `ssl` with certifi refuses

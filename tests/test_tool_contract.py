@@ -27,7 +27,7 @@ README = Path(__file__).parent.parent / "README.md"
 
 #: Ceiling on the combined tool descriptions, which are sent to the model on
 #: every session before any work happens. Raise it deliberately, not by accident.
-#: 0.1.0 ships about 2,300 characters.
+#: 0.1.0 ships about 2,600 characters.
 DESCRIPTION_BUDGET = 3_000
 
 #: Tools that touch no network at all.
@@ -132,6 +132,19 @@ async def test_descriptions_carry_the_pitfalls():
     assert "pdf_page" in text["get_pages"]
     assert "never returned inline" in text["get_image"]
     assert "Sites that have left CONTENTdm" in text["list_instances"]
+
+
+async def test_descriptions_say_which_hosts_and_files_are_refused():
+    """A model that knows the rules can work within them instead of failing against them."""
+    text = {t.name: " ".join(t.description.split()) for t in await _tools()}
+    assert "cdmNNNNN.contentdm.oclc.org" in text["list_instances"]
+    assert "other hosts are refused" in text["list_instances"]
+    assert "cdmNNNNN.contentdm.oclc.org" in text["get_item"]
+    for rule in (".jpg", "not hidden", "not under ~/Library", "download folder"):
+        assert rule in text["get_image"], rule
+    params = {t.name: _params(t) for t in await _tools()}
+    assert "contentdm.oclc.org" in params["search"]["instance"]["description"]
+    assert "/tmp/" not in params["get_image"]["destination"]["description"]
 
 
 async def test_the_instructions_keep_the_evidence_model():

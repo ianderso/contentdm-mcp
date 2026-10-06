@@ -4,9 +4,18 @@ Every request goes to an institution's own server, a small shared service, so
 the client is a careful guest:
 
 * **Only known hosts.** A request hook refuses any host that is not one of a
-  registered instance's addresses, so nothing a model passes in can make the
-  server fetch another site. Redirects are followed by hand, and only between
-  a host and its ``www.`` twin; anything else is reported, never followed.
+  registered instance's addresses, and instances come only through the host
+  policy in :mod:`contentdm_mcp.instances`. Redirects are followed by hand,
+  and only between an instance's own hosts; anything else is reported, never
+  followed.
+* **Only public addresses, checked where the connection is made.** The
+  transport looks each host up itself, refuses it if any address is private,
+  loopback, link-local, shared (CGNAT), multicast, reserved or unspecified,
+  and connects to the address it checked. A redirect is a new connection and
+  is checked again, and a name that changes its answer between two lookups
+  (DNS rebinding) gains nothing, because no earlier check is reused.
+* **Bounded answers.** A JSON answer over ``MAX_JSON_BYTES`` or an image over
+  ``MAX_IMAGE_BYTES`` is refused as it streams in, before it is all read.
 * **One request at a time per host, at least ``min_interval`` apart.** Hosts
   are independent, so a search across several sites runs side by side while
   each site sees one polite caller.
@@ -30,18 +39,21 @@ from __future__ import annotations
 import asyncio
 import email.utils
 import hashlib
+import ipaddress
 import json
 import logging
 import os
 import random
+import socket
 import time
 import uuid
-from collections.abc import Awaitable, Callable
+from collections.abc import Awaitable, Callable, Iterable
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlsplit
 
+import httpcore
 import httpx
 
 from . import __version__
@@ -62,18 +74,46 @@ MAX_REDIRECTS = 3
 #: rendered as JPEG is rarely over 15 MB.
 MAX_IMAGE_BYTES = 60_000_000
 
+#: A JSON answer larger than this is refused. The largest recorded, the page
+#: list of a 467-page volume, is 43 KB, so this leaves room for volumes of
+#: many thousands of pages and long transcripts.
+MAX_JSON_BYTES = 10_000_000
+
 #: Read timeout for an image download, which a server renders on demand.
 DOWNLOAD_TIMEOUT = 120.0
 
 _DAY = 86_400.0
 
-#: First bytes of the formats an image download may legitimately be.
+#: The image formats a download may be, and the file suffixes each may be
+#: saved under. A PDF is not among them: get_image renders a PDF's pages
+#: through IIIF as images, and never saves the PDF itself.
+IMAGE_SUFFIXES: dict[str, tuple[str, ...]] = {
+    "jpeg": (".jpg", ".jpeg"),
+    "png": (".png",),
+    "gif": (".gif",),
+    "tiff": (".tif", ".tiff"),
+    "jp2": (".jp2",),
+    "webp": (".webp",),
+}
+
+#: First bytes of each format. WebP is a RIFF container, so it is matched by
+#: its form type at offset 8 as well (see :func:`sniff_format`).
 _SIGNATURES = (
     (b"\xff\xd8\xff", "jpeg"),
     (b"\x89PNG\r\n\x1a\n", "png"),
     (b"GIF87a", "gif"),
     (b"GIF89a", "gif"),
+    (b"II*\x00", "tiff"),
+    (b"MM\x00*", "tiff"),
+    (b"\x00\x00\x00\x0cjP  \r\n\x87\n", "jp2"),
 )
+
+#: Shared address space for carrier-grade NAT, which ``ipaddress`` marks
+#: neither private nor global on every supported Python.
+_SHARED = ipaddress.ip_network("100.64.0.0/10")
+
+#: NAT64's well-known prefix: its last 32 bits are an IPv4 address.
+_NAT64 = ipaddress.ip_network("64:ff9b::/96")
 
 
 class CdmError(RuntimeError):
@@ -102,6 +142,10 @@ class HostNotAllowed(RuntimeError):
     """Raised when a request is aimed at a host no registered instance owns."""
 
 
+class PrivateAddress(HostNotAllowed):
+    """Raised at connect time for a host whose name leads to a non-public address."""
+
+
 def user_agent(contact: str = "") -> str:
     """The User-Agent sent with every request, naming this project."""
     extra = f"; {contact}" if contact else ""
@@ -112,12 +156,144 @@ def sniff_format(head: bytes) -> str:
     """Name an image format from its first bytes, or ``"unknown"``.
 
     The bytes are trusted over the Content-Type: an HTML error page served
-    with a 200 must not pass for a page image.
+    with a 200 must not pass for a page image, and nor must a script or a
+    property list. JPEG, PNG, GIF, TIFF, JPEG 2000 and WebP are recognised.
     """
     for signature, name in _SIGNATURES:
         if head.startswith(signature):
             return name
+    if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+        return "webp"
     return "unknown"
+
+
+def address_problem(address: str) -> str | None:
+    """Why a connection must not go to this IP address, or None if it may.
+
+    Refused, in IPv4 and IPv6: loopback, private, link-local, shared (CGNAT),
+    multicast, reserved, unspecified and site-local addresses, anything else
+    not globally routable, and an IPv6 address that carries one of those as
+    an embedded IPv4 address (IPv4-mapped, 6to4, NAT64).
+    """
+    try:
+        ip = ipaddress.ip_address(address)
+    except ValueError:
+        return "unreadable"
+    if ip.version == 6:
+        if ip.ipv4_mapped is not None:
+            return "IPv4-mapped"
+        embedded = ip.sixtofour
+        if embedded is None and ip in _NAT64:
+            embedded = ipaddress.IPv4Address(int(ip) & 0xFFFF_FFFF)
+        if embedded is not None and (problem := address_problem(str(embedded))):
+            return problem
+    checks = (
+        ("loopback", ip.is_loopback),
+        ("unspecified", ip.is_unspecified),
+        ("link-local", ip.is_link_local),
+        ("multicast", ip.is_multicast),
+        ("private", ip.is_private),
+        ("shared (CGNAT)", ip.version == 4 and ip in _SHARED),
+        ("reserved", ip.is_reserved),
+        ("site-local", ip.version == 6 and ip.is_site_local),
+        ("non-global", not ip.is_global),
+    )
+    return next((name for name, hit in checks if hit), None)
+
+
+class PublicOnlyBackend(httpcore.AsyncNetworkBackend):
+    """A network backend that connects only to public addresses.
+
+    It resolves the host itself, refuses the connection if any address the
+    name gives is not public, and then connects to an address it checked,
+    never to the name, so the name cannot answer differently in between.
+    TLS still verifies the certificate against the host name.
+    """
+
+    def __init__(self, inner: httpcore.AsyncNetworkBackend):
+        """Wrap the backend that makes the actual connections."""
+        self._inner = inner
+
+    async def connect_tcp(
+        self,
+        host: str,
+        port: int,
+        timeout: float | None = None,
+        local_address: str | None = None,
+        socket_options: Iterable[Any] | None = None,
+    ) -> httpcore.AsyncNetworkStream:
+        """Look ``host`` up, check every address, and connect to a checked one."""
+        addresses = await _look_up(host, port, timeout)
+        for address in addresses:
+            if problem := address_problem(address):
+                logger.warning("refusing %s: it resolves to %s (%s)", host, address, problem)
+                raise PrivateAddress(
+                    f"refusing to connect to {host}: it resolves to an address that is not "
+                    f"public ({problem}), so it is not an institution's site"
+                )
+        error: Exception | None = None
+        for address in addresses:
+            try:
+                return await self._inner.connect_tcp(
+                    address,
+                    port,
+                    timeout=timeout,
+                    local_address=local_address,
+                    socket_options=socket_options,
+                )
+            except (httpcore.ConnectError, httpcore.ConnectTimeout) as exc:
+                error = exc
+        raise error or httpcore.ConnectError(f"cannot connect to {host}")
+
+    async def connect_unix_socket(
+        self, path: str, timeout: float | None = None, socket_options: Iterable[Any] | None = None
+    ) -> httpcore.AsyncNetworkStream:
+        """Refuse: every site is reached over TCP."""
+        raise HostNotAllowed("refusing a connection to a local socket")
+
+    async def sleep(self, seconds: float) -> None:
+        """Defer to the wrapped backend."""
+        await self._inner.sleep(seconds)
+
+
+async def _look_up(host: str, port: int, timeout: float | None) -> list[str]:
+    """Every address ``host`` resolves to, in the resolver's order."""
+    loop = asyncio.get_running_loop()
+    try:
+        infos = await asyncio.wait_for(
+            loop.getaddrinfo(host, port, type=socket.SOCK_STREAM), timeout
+        )
+    except TimeoutError:
+        raise httpcore.ConnectTimeout(f"looking up {host} took too long") from None
+    except OSError as exc:
+        raise httpcore.ConnectError(f"cannot look up {host}: {exc}") from None
+    addresses = list(dict.fromkeys(str(info[4][0]) for info in infos))
+    if not addresses:
+        raise httpcore.ConnectError(f"{host} has no address")
+    return addresses
+
+
+class PublicOnlyTransport(httpx.AsyncHTTPTransport):
+    """httpx's own transport, connecting through :class:`PublicOnlyBackend`.
+
+    httpx takes no network backend as an argument, so the one its connection
+    pool made is wrapped in place. Should a future httpx or httpcore move it,
+    construction fails rather than run without the check.
+    """
+
+    def __init__(self, *, backend: httpcore.AsyncNetworkBackend | None = None, **kwargs: Any):
+        """Build the transport; ``backend`` replaces the real network, for tests."""
+        super().__init__(**kwargs)
+        pool = getattr(self, "_pool", None)
+        inner = getattr(pool, "_network_backend", None)
+        if not isinstance(pool, httpcore.AsyncConnectionPool) or not isinstance(
+            inner, httpcore.AsyncNetworkBackend
+        ):
+            raise RuntimeError(
+                "httpx's connection pool has changed shape; the public-address check "
+                "cannot be installed, so no request will be sent"
+            )
+        pool._network_backend = PublicOnlyBackend(backend or inner)
 
 
 class CdmHttp:
@@ -137,8 +313,13 @@ class CdmHttp:
         Further attempts after a 429, a 5xx or a dropped connection.
     backoff : float, optional
         Base of the wait between attempts when no ``Retry-After`` is given.
+    max_json_bytes : int, optional
+        Largest JSON answer read.
     transport : httpx.AsyncBaseTransport, optional
-        For tests.
+        For tests. The default is a :class:`PublicOnlyTransport`. httpx does
+        not apply proxy settings from the environment to a transport it is
+        given, which suits the check: through a proxy, the proxy would choose
+        the address.
     """
 
     def __init__(
@@ -150,6 +331,7 @@ class CdmHttp:
         contact: str = "",
         retries: int = 1,
         backoff: float = 1.0,
+        max_json_bytes: int = MAX_JSON_BYTES,
         transport: httpx.AsyncBaseTransport | None = None,
         clock: Callable[[], float] = time.monotonic,
         sleep: Callable[[float], Awaitable[None]] = asyncio.sleep,
@@ -161,13 +343,14 @@ class CdmHttp:
         self._backoff = backoff
         self._clock = clock
         self._sleep = sleep
+        self._max_json_bytes = max_json_bytes
         self._allowed: set[str] = set()
         self._http = httpx.AsyncClient(
             timeout=timeout,
             headers={"User-Agent": user_agent(contact), "Accept": "application/json"},
             event_hooks={"request": [self._only_known_hosts]},
             follow_redirects=False,
-            transport=transport,
+            transport=transport or PublicOnlyTransport(),
         )
         self._host_locks: dict[str, asyncio.Lock] = {}
         self._host_last: dict[str, float] = {}
@@ -276,26 +459,30 @@ class CdmHttp:
         return data
 
     async def _fetch_json(self, instance: Instance, url: str) -> Any:
-        response = await self._send(instance, url)
+        response = await self._send(instance, url, limit=self._max_json_bytes)
         try:
             return decode(response)
         except CdmError as exc:
             self._note(exc)
             raise
 
-    async def _send(self, instance: Instance, url: str, **kwargs) -> httpx.Response:
+    async def _send(self, instance: Instance, url: str, *, limit: int, **kwargs) -> httpx.Response:
         """One GET, paced, retried and redirected by hand; the final response.
 
         Raises
         ------
         CdmError
-            On a status of 400 or more, no response, a bot challenge, or a
-            redirect to anywhere but the same site.
+            On a status of 400 or more, no response, a bot challenge, a
+            redirect to anywhere but the same site, or a body over ``limit``
+            bytes (``too_large``).
+        HostNotAllowed
+            If a host is not registered, or its name leads to an address that
+            is not public. Never retried.
         """
         attempt = 0
         while True:
             try:
-                response = await self._follow(instance, url, **kwargs)
+                response = await self._follow(instance, url, limit=limit, **kwargs)
             except CdmError as exc:
                 error = exc
                 response = None
@@ -315,10 +502,12 @@ class CdmHttp:
             logger.info("%s -> %s; retry %d in %.1fs", url, error.code, attempt, wait)
             await self._sleep(wait)
 
-    async def _follow(self, instance: Instance, url: str, **kwargs) -> httpx.Response:
-        """Send, following redirects only between a host and its ``www.`` twin."""
+    async def _follow(
+        self, instance: Instance, url: str, *, limit: int, **kwargs
+    ) -> httpx.Response:
+        """Send, following redirects only between the instance's own hosts."""
         for _ in range(MAX_REDIRECTS + 1):
-            response = await self._paced(url, **kwargs)
+            response = await self._paced(url, limit=limit, **kwargs)
             if response.status_code not in (301, 302, 303, 307, 308):
                 return response
             location = urljoin(url, response.headers.get("location", ""))
@@ -334,8 +523,13 @@ class CdmHttp:
             url = location
         raise CdmError("redirected", "too many redirects", url=url)
 
-    async def _paced(self, url: str, **kwargs) -> httpx.Response:
-        """Send one request once this host's turn and interval have come."""
+    async def _paced(self, url: str, *, limit: int, **kwargs) -> httpx.Response:
+        """Send one request once this host's turn and interval have come.
+
+        The body is streamed and refused as soon as it passes ``limit``
+        bytes, decoded, so neither a declared nor an undeclared size can make
+        the server read more.
+        """
         host = (urlsplit(url).hostname or "").lower()
         lock = self._host_locks.setdefault(host, asyncio.Lock())
         async with lock:
@@ -348,9 +542,9 @@ class CdmHttp:
             self._live_calls += 1
             self._hosts_called[host] = self._hosts_called.get(host, 0) + 1
             try:
-                response = await self._http.get(url, **kwargs)
-                await response.aread()
-                return response
+                async with self._http.stream("GET", url, **kwargs) as response:
+                    body = await _read_capped(response, limit, url)
+                return _with_body(response, body)
             except httpx.TimeoutException as exc:
                 raise CdmError("timeout", _transport_text(exc), url=url) from None
             except httpx.TransportError as exc:
@@ -361,9 +555,11 @@ class CdmHttp:
     ) -> tuple[int, str, str]:
         """Write an image from an instance to a new file.
 
-        The file is created exclusively, so an existing one is never
-        overwritten, and removed again if anything goes wrong, so a partial
-        file never passes for a finished one.
+        Nothing is written unless the bytes are an image (:func:`sniff_format`)
+        whose format matches ``target``'s suffix: a page scan saved as
+        ``.jpg`` must be a JPEG. The file is created exclusively, so an
+        existing one is never overwritten, and removed again if writing
+        fails, so a partial file never passes for a finished one.
 
         Returns
         -------
@@ -374,25 +570,36 @@ class CdmHttp:
         Raises
         ------
         CdmError
-            If the site refuses, sends something that is not an image, or
-            sends more than ``max_bytes``. Nothing is left on disk.
+            If the site refuses, sends something that is not an image
+            (``not_an_image``), an image of another format than the suffix
+            says (``extension_mismatch``), or more than ``max_bytes``
+            (``too_large``). Nothing is left on disk.
         FileExistsError
             If ``target`` exists. It is left untouched.
         """
         self.allow(instance)
         url = instance.request_base + path
         response = await self._send(
-            instance, url, timeout=httpx.Timeout(self._timeout, read=DOWNLOAD_TIMEOUT)
+            instance,
+            url,
+            limit=max_bytes,
+            timeout=httpx.Timeout(self._timeout, read=DOWNLOAD_TIMEOUT),
         )
         body = response.content
-        if len(body) > max_bytes:
-            raise CdmError("too_large", f"the image is over {max_bytes // 1_000_000} MB", url=url)
         kind = sniff_format(body[:16])
         if kind == "unknown":
             raise CdmError(
                 "not_an_image",
                 "the site answered with something that is not an image "
-                f"({response.headers.get('content-type', 'no content type')})",
+                f"({response.headers.get('content-type', 'no content type')}); nothing was saved",
+                status=response.status_code,
+                url=url,
+            )
+        if target.suffix.lower() not in IMAGE_SUFFIXES[kind]:
+            raise CdmError(
+                "extension_mismatch",
+                f"the site sent a {kind.upper()} image, which cannot be saved as "
+                f"{target.name}; nothing was saved",
                 status=response.status_code,
                 url=url,
             )
@@ -510,6 +717,39 @@ def decode(response: httpx.Response) -> Any:
             code = "api_error"
         raise CdmError(code, message or "CONTENTdm reported an error", url=url)
     return data
+
+
+async def _read_capped(response: httpx.Response, limit: int, url: str) -> bytes:
+    """Read a streamed body, refusing it once it passes ``limit`` bytes."""
+    too_large = CdmError(
+        "too_large",
+        f"the answer is over {limit / 1_000_000:g} MB, more than this server reads",
+        status=response.status_code,
+        url=url,
+    )
+    declared = response.headers.get("content-length", "").strip()
+    if declared.isdigit() and int(declared) > limit:
+        raise too_large
+    chunks: list[bytes] = []
+    size = 0
+    async for chunk in response.aiter_bytes():
+        size += len(chunk)
+        if size > limit:
+            raise too_large
+        chunks.append(chunk)
+    return b"".join(chunks)
+
+
+def _with_body(response: httpx.Response, body: bytes) -> httpx.Response:
+    """A complete response carrying ``body``, already decoded, in place of the stream."""
+    spent = {"content-encoding", "content-length", "transfer-encoding"}
+    return httpx.Response(
+        response.status_code,
+        headers=[(k, v) for k, v in response.headers.multi_items() if k.lower() not in spent],
+        content=body,
+        request=response.request,
+        extensions=response.extensions,
+    )
 
 
 def _http_error(response: httpx.Response, url: str) -> CdmError:
