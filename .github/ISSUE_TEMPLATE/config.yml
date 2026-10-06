@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/ianderso/contentdm-mcp/security/advisories/new
+    about: Privately, not in a public issue. See SECURITY.md.
+  - name: A problem with an institution's site or its records
+    url: https://www.oclc.org/en/contentdm.html
+    about: This project does not operate any CONTENTdm site. Outages and wrong descriptions go to the institution that publishes them.

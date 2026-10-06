@@ -1,0 +1,20 @@
+[
+ {
+  "alias": "/TestApps",
+  "name": "Confederate Pension Applications",
+  "path": "/cdm/sites/17154/data/TestApps",
+  "secondary_alias": "TestApps"
+ },
+ {
+  "alias": "/gnf",
+  "name": "General Name File (No Images)",
+  "path": "/cdm/sites/17154/data/gnf",
+  "secondary_alias": "gnf"
+ },
+ {
+  "alias": "/gadeaths",
+  "name": "Georgia Death Certificates",
+  "path": "/cdm/sites/17154/data/gadeaths",
+  "secondary_alias": "gadeaths"
+ }
+]

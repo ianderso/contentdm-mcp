@@ -1,0 +1,25 @@
+name: Feature request
+description: A research question the tools cannot answer yet, or a site to add.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tools that write to a site, or that work around a bot check, will not be merged. See "Out of scope, by decision" in [docs/DESIGN.md](https://github.com/ianderso/contentdm-mcp/blob/main/docs/DESIGN.md).
+  - type: textarea
+    id: problem
+    attributes:
+      label: The research problem
+      description: What you were trying to find or read, and where the current tools stopped you.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would help
+      description: A new tool, a new parameter, a change to what a tool returns, or a site for the curated list.
+  - type: textarea
+    id: site
+    attributes:
+      label: Site to add
+      description: For a new curated entry, the site's address, who runs it, and which of its collections hold state or county records.

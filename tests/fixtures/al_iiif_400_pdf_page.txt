@@ -1,0 +1,6 @@
+400
+400 Bad Request
+
+java.lang.IndexOutOfBoundsException: Index 10 out of bounds for length 10
+
+

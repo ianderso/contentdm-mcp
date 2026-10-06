@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ianderso/contentdm-mcp",
+  "title": "CONTENTdm State Archives",
+  "description": "Search US state archives' record images on CONTENTdm; read items, pages and transcripts.",
+  "repository": {
+    "url": "https://github.com/ianderso/contentdm-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "contentdm-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CONTENTDM_CACHE_DIR",
+          "description": "Directory for the on-disk response cache.",
+          "default": "~/.cache/contentdm-mcp"
+        },
+        {
+          "name": "CONTENTDM_TIMEOUT",
+          "description": "HTTP timeout in seconds for one request. Image downloads get 120 s to read.",
+          "default": "30"
+        },
+        {
+          "name": "CONTENTDM_MIN_INTERVAL",
+          "description": "Least seconds between two requests to one site. Never below 0.5.",
+          "default": "1"
+        },
+        {
+          "name": "CONTENTDM_CONTACT",
+          "description": "An email address or URL appended to the User-Agent, so an institution can reach whoever runs the server."
+        }
+      ]
+    }
+  ]
+}

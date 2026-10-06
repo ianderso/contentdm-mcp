@@ -1,0 +1,39 @@
+{
+ "pager": {
+  "start": "1",
+  "maxrecs": "3",
+  "total": 16
+ },
+ "records": [
+  {
+   "collection": "/voices",
+   "pointer": 2664,
+   "filetype": "pdf",
+   "parentobject": -1,
+   "title": "Letter from S. R. Mallory, secretary of the Confederate Navy in Richmond, Virginia, to Vice Admiral Raphael Semmes on the James River in Virginia.",
+   "date": "1865 April 2",
+   "descri": "In the letter Mallory informs Semmes that General Lee has advised the Confederate government to evacuate Richmond: \"I presume that Genl. Lee has advised you of this, and of his movements, and made suggestions as to the disposition to be made of your squadron.\" Semmes is to destroy his ships and lead his men to Danville, Virginia, \"rationed as far as possible for the march, and armed and equipped for duty in the field.\" A transcription is included.",
+   "find": "2665.pdf"
+  },
+  {
+   "collection": "/voices",
+   "pointer": 2669,
+   "filetype": "pdf",
+   "parentobject": -1,
+   "title": "Copy of a letter from James Hughes, counsel for Raphael Semmes, to President Andrew Johnson.",
+   "date": "1866 January 6",
+   "descri": "In the letter Hughes describes the recent arrest of Semmes, which he considers to be a violation of the parole that was granted him on April 26,1865. According to the parole, Semmes was \"permitted to return to his home, not to be disturbed by the United States authorities, so long as he obeys the laws in force where he may reside\"; his arrest on December 15, 1865, was for \"charges predicated upon his acts as a rear admiral in the Confederate Navy...committed ten months before his parole and well known when it was granted.\"  Hughes asks President Johnson to consider the matter, \"appealing to the laws of nations and to the good faith and honor of the Government of the United States in the premises.\"",
+   "find": "2670.pdf"
+  },
+  {
+   "collection": "/voices",
+   "pointer": 2674,
+   "filetype": "pdf",
+   "parentobject": -1,
+   "title": "Copy of a letter from \"the members of the Bar of the City of Mobile,\" to President Andrew Johnson.",
+   "date": "1866 May 23",
+   "descri": "In the letter the men discuss the recent election of Raphael Semmes to the position of county probate judge. The U.S. authorities have prevented him from taking office, and the bar association now asks the president to allow Semmes to assume his duties. They describe all the functions of the office (which handles wills, estates, deeds, revenue, internal improvements, and marriages), explaining that \"it is difficult to conceive how the office can, even for a brief period of time, be dispensed with without irreparable injury to the public.\" They also add that \"The office is not one of political influence, nor is it one of high honor. It was sought for Mr. Semmes by his personal friends, as a simple means of affording a man of intelligence and personal worth a support for a large and dependent family.\"",
+   "find": "2675.pdf"
+  }
+ ]
+}

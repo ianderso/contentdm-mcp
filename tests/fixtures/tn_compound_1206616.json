@@ -1,0 +1,2340 @@
+{
+ "type": "Document",
+ "page": [
+  {
+   "pagetitle": "54784_000",
+   "pagefile": "1206150.jp2",
+   "pageptr": "1206149"
+  },
+  {
+   "pagetitle": "54784_001",
+   "pagefile": "1206151.jp2",
+   "pageptr": "1206150"
+  },
+  {
+   "pagetitle": "54784_002",
+   "pagefile": "1206152.jp2",
+   "pageptr": "1206151"
+  },
+  {
+   "pagetitle": "54784_003",
+   "pagefile": "1206153.jp2",
+   "pageptr": "1206152"
+  },
+  {
+   "pagetitle": "54784_004",
+   "pagefile": "1206154.jp2",
+   "pageptr": "1206153"
+  },
+  {
+   "pagetitle": "54784_005",
+   "pagefile": "1206155.jp2",
+   "pageptr": "1206154"
+  },
+  {
+   "pagetitle": "54784_006",
+   "pagefile": "1206156.jp2",
+   "pageptr": "1206155"
+  },
+  {
+   "pagetitle": "54784_007",
+   "pagefile": "1206157.jp2",
+   "pageptr": "1206156"
+  },
+  {
+   "pagetitle": "54784_008",
+   "pagefile": "1206158.jp2",
+   "pageptr": "1206157"
+  },
+  {
+   "pagetitle": "54784_009",
+   "pagefile": "1206159.jp2",
+   "pageptr": "1206158"
+  },
+  {
+   "pagetitle": "54784_010",
+   "pagefile": "1206160.jp2",
+   "pageptr": "1206159"
+  },
+  {
+   "pagetitle": "54784_011",
+   "pagefile": "1206161.jp2",
+   "pageptr": "1206160"
+  },
+  {
+   "pagetitle": "54784_012",
+   "pagefile": "1206162.jp2",
+   "pageptr": "1206161"
+  },
+  {
+   "pagetitle": "54784_013",
+   "pagefile": "1206163.jp2",
+   "pageptr": "1206162"
+  },
+  {
+   "pagetitle": "54784_014",
+   "pagefile": "1206164.jp2",
+   "pageptr": "1206163"
+  },
+  {
+   "pagetitle": "54784_015",
+   "pagefile": "1206165.jp2",
+   "pageptr": "1206164"
+  },
+  {
+   "pagetitle": "54784_016",
+   "pagefile": "1206166.jp2",
+   "pageptr": "1206165"
+  },
+  {
+   "pagetitle": "54784_017",
+   "pagefile": "1206167.jp2",
+   "pageptr": "1206166"
+  },
+  {
+   "pagetitle": "54784_018",
+   "pagefile": "1206168.jp2",
+   "pageptr": "1206167"
+  },
+  {
+   "pagetitle": "54784_019",
+   "pagefile": "1206169.jp2",
+   "pageptr": "1206168"
+  },
+  {
+   "pagetitle": "54784_020",
+   "pagefile": "1206170.jp2",
+   "pageptr": "1206169"
+  },
+  {
+   "pagetitle": "54784_021",
+   "pagefile": "1206171.jp2",
+   "pageptr": "1206170"
+  },
+  {
+   "pagetitle": "54784_022",
+   "pagefile": "1206172.jp2",
+   "pageptr": "1206171"
+  },
+  {
+   "pagetitle": "54784_023",
+   "pagefile": "1206173.jp2",
+   "pageptr": "1206172"
+  },
+  {
+   "pagetitle": "54784_024",
+   "pagefile": "1206174.jp2",
+   "pageptr": "1206173"
+  },
+  {
+   "pagetitle": "54784_025",
+   "pagefile": "1206175.jp2",
+   "pageptr": "1206174"
+  },
+  {
+   "pagetitle": "54784_026",
+   "pagefile": "1206176.jp2",
+   "pageptr": "1206175"
+  },
+  {
+   "pagetitle": "54784_027",
+   "pagefile": "1206177.jp2",
+   "pageptr": "1206176"
+  },
+  {
+   "pagetitle": "54784_028",
+   "pagefile": "1206178.jp2",
+   "pageptr": "1206177"
+  },
+  {
+   "pagetitle": "54784_029",
+   "pagefile": "1206179.jp2",
+   "pageptr": "1206178"
+  },
+  {
+   "pagetitle": "54784_030",
+   "pagefile": "1206180.jp2",
+   "pageptr": "1206179"
+  },
+  {
+   "pagetitle": "54784_031",
+   "pagefile": "1206181.jp2",
+   "pageptr": "1206180"
+  },
+  {
+   "pagetitle": "54784_032",
+   "pagefile": "1206182.jp2",
+   "pageptr": "1206181"
+  },
+  {
+   "pagetitle": "54784_033",
+   "pagefile": "1206183.jp2",
+   "pageptr": "1206182"
+  },
+  {
+   "pagetitle": "54784_034",
+   "pagefile": "1206184.jp2",
+   "pageptr": "1206183"
+  },
+  {
+   "pagetitle": "54784_035",
+   "pagefile": "1206185.jp2",
+   "pageptr": "1206184"
+  },
+  {
+   "pagetitle": "54784_036",
+   "pagefile": "1206186.jp2",
+   "pageptr": "1206185"
+  },
+  {
+   "pagetitle": "54784_037",
+   "pagefile": "1206187.jp2",
+   "pageptr": "1206186"
+  },
+  {
+   "pagetitle": "54784_038",
+   "pagefile": "1206188.jp2",
+   "pageptr": "1206187"
+  },
+  {
+   "pagetitle": "54784_039",
+   "pagefile": "1206189.jp2",
+   "pageptr": "1206188"
+  },
+  {
+   "pagetitle": "54784_040",
+   "pagefile": "1206190.jp2",
+   "pageptr": "1206189"
+  },
+  {
+   "pagetitle": "54784_041",
+   "pagefile": "1206191.jp2",
+   "pageptr": "1206190"
+  },
+  {
+   "pagetitle": "54784_042",
+   "pagefile": "1206192.jp2",
+   "pageptr": "1206191"
+  },
+  {
+   "pagetitle": "54784_043",
+   "pagefile": "1206193.jp2",
+   "pageptr": "1206192"
+  },
+  {
+   "pagetitle": "54784_044",
+   "pagefile": "1206194.jp2",
+   "pageptr": "1206193"
+  },
+  {
+   "pagetitle": "54784_045",
+   "pagefile": "1206195.jp2",
+   "pageptr": "1206194"
+  },
+  {
+   "pagetitle": "54784_046",
+   "pagefile": "1206196.jp2",
+   "pageptr": "1206195"
+  },
+  {
+   "pagetitle": "54784_047",
+   "pagefile": "1206197.jp2",
+   "pageptr": "1206196"
+  },
+  {
+   "pagetitle": "54784_048",
+   "pagefile": "1206198.jp2",
+   "pageptr": "1206197"
+  },
+  {
+   "pagetitle": "54784_049",
+   "pagefile": "1206199.jp2",
+   "pageptr": "1206198"
+  },
+  {
+   "pagetitle": "54784_050",
+   "pagefile": "1206200.jp2",
+   "pageptr": "1206199"
+  },
+  {
+   "pagetitle": "54784_051",
+   "pagefile": "1206201.jp2",
+   "pageptr": "1206200"
+  },
+  {
+   "pagetitle": "54784_052",
+   "pagefile": "1206202.jp2",
+   "pageptr": "1206201"
+  },
+  {
+   "pagetitle": "54784_053",
+   "pagefile": "1206203.jp2",
+   "pageptr": "1206202"
+  },
+  {
+   "pagetitle": "54784_054",
+   "pagefile": "1206204.jp2",
+   "pageptr": "1206203"
+  },
+  {
+   "pagetitle": "54784_055",
+   "pagefile": "1206205.jp2",
+   "pageptr": "1206204"
+  },
+  {
+   "pagetitle": "54784_056",
+   "pagefile": "1206206.jp2",
+   "pageptr": "1206205"
+  },
+  {
+   "pagetitle": "54784_057",
+   "pagefile": "1206207.jp2",
+   "pageptr": "1206206"
+  },
+  {
+   "pagetitle": "54784_058",
+   "pagefile": "1206208.jp2",
+   "pageptr": "1206207"
+  },
+  {
+   "pagetitle": "54784_059",
+   "pagefile": "1206209.jp2",
+   "pageptr": "1206208"
+  },
+  {
+   "pagetitle": "54784_060",
+   "pagefile": "1206210.jp2",
+   "pageptr": "1206209"
+  },
+  {
+   "pagetitle": "54784_061",
+   "pagefile": "1206211.jp2",
+   "pageptr": "1206210"
+  },
+  {
+   "pagetitle": "54784_062",
+   "pagefile": "1206212.jp2",
+   "pageptr": "1206211"
+  },
+  {
+   "pagetitle": "54784_063",
+   "pagefile": "1206213.jp2",
+   "pageptr": "1206212"
+  },
+  {
+   "pagetitle": "54784_064",
+   "pagefile": "1206214.jp2",
+   "pageptr": "1206213"
+  },
+  {
+   "pagetitle": "54784_065",
+   "pagefile": "1206215.jp2",
+   "pageptr": "1206214"
+  },
+  {
+   "pagetitle": "54784_066",
+   "pagefile": "1206216.jp2",
+   "pageptr": "1206215"
+  },
+  {
+   "pagetitle": "54784_067",
+   "pagefile": "1206217.jp2",
+   "pageptr": "1206216"
+  },
+  {
+   "pagetitle": "54784_068",
+   "pagefile": "1206218.jp2",
+   "pageptr": "1206217"
+  },
+  {
+   "pagetitle": "54784_069",
+   "pagefile": "1206219.jp2",
+   "pageptr": "1206218"
+  },
+  {
+   "pagetitle": "54784_070",
+   "pagefile": "1206220.jp2",
+   "pageptr": "1206219"
+  },
+  {
+   "pagetitle": "54784_071",
+   "pagefile": "1206221.jp2",
+   "pageptr": "1206220"
+  },
+  {
+   "pagetitle": "54784_072",
+   "pagefile": "1206222.jp2",
+   "pageptr": "1206221"
+  },
+  {
+   "pagetitle": "54784_073",
+   "pagefile": "1206223.jp2",
+   "pageptr": "1206222"
+  },
+  {
+   "pagetitle": "54784_074",
+   "pagefile": "1206224.jp2",
+   "pageptr": "1206223"
+  },
+  {
+   "pagetitle": "54784_075",
+   "pagefile": "1206225.jp2",
+   "pageptr": "1206224"
+  },
+  {
+   "pagetitle": "54784_076",
+   "pagefile": "1206226.jp2",
+   "pageptr": "1206225"
+  },
+  {
+   "pagetitle": "54784_077",
+   "pagefile": "1206227.jp2",
+   "pageptr": "1206226"
+  },
+  {
+   "pagetitle": "54784_078",
+   "pagefile": "1206228.jp2",
+   "pageptr": "1206227"
+  },
+  {
+   "pagetitle": "54784_079",
+   "pagefile": "1206229.jp2",
+   "pageptr": "1206228"
+  },
+  {
+   "pagetitle": "54784_080",
+   "pagefile": "1206230.jp2",
+   "pageptr": "1206229"
+  },
+  {
+   "pagetitle": "54784_081",
+   "pagefile": "1206231.jp2",
+   "pageptr": "1206230"
+  },
+  {
+   "pagetitle": "54784_082",
+   "pagefile": "1206232.jp2",
+   "pageptr": "1206231"
+  },
+  {
+   "pagetitle": "54784_083",
+   "pagefile": "1206233.jp2",
+   "pageptr": "1206232"
+  },
+  {
+   "pagetitle": "54784_084",
+   "pagefile": "1206234.jp2",
+   "pageptr": "1206233"
+  },
+  {
+   "pagetitle": "54784_085",
+   "pagefile": "1206235.jp2",
+   "pageptr": "1206234"
+  },
+  {
+   "pagetitle": "54784_086",
+   "pagefile": "1206236.jp2",
+   "pageptr": "1206235"
+  },
+  {
+   "pagetitle": "54784_087",
+   "pagefile": "1206237.jp2",
+   "pageptr": "1206236"
+  },
+  {
+   "pagetitle": "54784_088",
+   "pagefile": "1206238.jp2",
+   "pageptr": "1206237"
+  },
+  {
+   "pagetitle": "54784_089",
+   "pagefile": "1206239.jp2",
+   "pageptr": "1206238"
+  },
+  {
+   "pagetitle": "54784_090",
+   "pagefile": "1206240.jp2",
+   "pageptr": "1206239"
+  },
+  {
+   "pagetitle": "54784_091",
+   "pagefile": "1206241.jp2",
+   "pageptr": "1206240"
+  },
+  {
+   "pagetitle": "54784_092",
+   "pagefile": "1206242.jp2",
+   "pageptr": "1206241"
+  },
+  {
+   "pagetitle": "54784_093",
+   "pagefile": "1206243.jp2",
+   "pageptr": "1206242"
+  },
+  {
+   "pagetitle": "54784_094",
+   "pagefile": "1206244.jp2",
+   "pageptr": "1206243"
+  },
+  {
+   "pagetitle": "54784_095",
+   "pagefile": "1206245.jp2",
+   "pageptr": "1206244"
+  },
+  {
+   "pagetitle": "54784_096",
+   "pagefile": "1206246.jp2",
+   "pageptr": "1206245"
+  },
+  {
+   "pagetitle": "54784_097",
+   "pagefile": "1206247.jp2",
+   "pageptr": "1206246"
+  },
+  {
+   "pagetitle": "54784_098",
+   "pagefile": "1206248.jp2",
+   "pageptr": "1206247"
+  },
+  {
+   "pagetitle": "54784_099",
+   "pagefile": "1206249.jp2",
+   "pageptr": "1206248"
+  },
+  {
+   "pagetitle": "54784_100",
+   "pagefile": "1206250.jp2",
+   "pageptr": "1206249"
+  },
+  {
+   "pagetitle": "54784_101",
+   "pagefile": "1206251.jp2",
+   "pageptr": "1206250"
+  },
+  {
+   "pagetitle": "54784_102",
+   "pagefile": "1206252.jp2",
+   "pageptr": "1206251"
+  },
+  {
+   "pagetitle": "54784_103",
+   "pagefile": "1206253.jp2",
+   "pageptr": "1206252"
+  },
+  {
+   "pagetitle": "54784_104",
+   "pagefile": "1206254.jp2",
+   "pageptr": "1206253"
+  },
+  {
+   "pagetitle": "54784_105",
+   "pagefile": "1206255.jp2",
+   "pageptr": "1206254"
+  },
+  {
+   "pagetitle": "54784_106",
+   "pagefile": "1206256.jp2",
+   "pageptr": "1206255"
+  },
+  {
+   "pagetitle": "54784_107",
+   "pagefile": "1206257.jp2",
+   "pageptr": "1206256"
+  },
+  {
+   "pagetitle": "54784_108",
+   "pagefile": "1206258.jp2",
+   "pageptr": "1206257"
+  },
+  {
+   "pagetitle": "54784_109",
+   "pagefile": "1206259.jp2",
+   "pageptr": "1206258"
+  },
+  {
+   "pagetitle": "54784_110",
+   "pagefile": "1206260.jp2",
+   "pageptr": "1206259"
+  },
+  {
+   "pagetitle": "54784_111",
+   "pagefile": "1206261.jp2",
+   "pageptr": "1206260"
+  },
+  {
+   "pagetitle": "54784_112",
+   "pagefile": "1206262.jp2",
+   "pageptr": "1206261"
+  },
+  {
+   "pagetitle": "54784_113",
+   "pagefile": "1206263.jp2",
+   "pageptr": "1206262"
+  },
+  {
+   "pagetitle": "54784_114",
+   "pagefile": "1206264.jp2",
+   "pageptr": "1206263"
+  },
+  {
+   "pagetitle": "54784_115",
+   "pagefile": "1206265.jp2",
+   "pageptr": "1206264"
+  },
+  {
+   "pagetitle": "54784_116",
+   "pagefile": "1206266.jp2",
+   "pageptr": "1206265"
+  },
+  {
+   "pagetitle": "54784_117",
+   "pagefile": "1206267.jp2",
+   "pageptr": "1206266"
+  },
+  {
+   "pagetitle": "54784_118",
+   "pagefile": "1206268.jp2",
+   "pageptr": "1206267"
+  },
+  {
+   "pagetitle": "54784_119",
+   "pagefile": "1206269.jp2",
+   "pageptr": "1206268"
+  },
+  {
+   "pagetitle": "54784_120",
+   "pagefile": "1206270.jp2",
+   "pageptr": "1206269"
+  },
+  {
+   "pagetitle": "54784_121",
+   "pagefile": "1206271.jp2",
+   "pageptr": "1206270"
+  },
+  {
+   "pagetitle": "54784_122",
+   "pagefile": "1206272.jp2",
+   "pageptr": "1206271"
+  },
+  {
+   "pagetitle": "54784_123",
+   "pagefile": "1206273.jp2",
+   "pageptr": "1206272"
+  },
+  {
+   "pagetitle": "54784_124",
+   "pagefile": "1206274.jp2",
+   "pageptr": "1206273"
+  },
+  {
+   "pagetitle": "54784_125",
+   "pagefile": "1206275.jp2",
+   "pageptr": "1206274"
+  },
+  {
+   "pagetitle": "54784_126",
+   "pagefile": "1206276.jp2",
+   "pageptr": "1206275"
+  },
+  {
+   "pagetitle": "54784_127",
+   "pagefile": "1206277.jp2",
+   "pageptr": "1206276"
+  },
+  {
+   "pagetitle": "54784_128",
+   "pagefile": "1206278.jp2",
+   "pageptr": "1206277"
+  },
+  {
+   "pagetitle": "54784_129",
+   "pagefile": "1206279.jp2",
+   "pageptr": "1206278"
+  },
+  {
+   "pagetitle": "54784_130",
+   "pagefile": "1206280.jp2",
+   "pageptr": "1206279"
+  },
+  {
+   "pagetitle": "54784_131",
+   "pagefile": "1206281.jp2",
+   "pageptr": "1206280"
+  },
+  {
+   "pagetitle": "54784_132",
+   "pagefile": "1206282.jp2",
+   "pageptr": "1206281"
+  },
+  {
+   "pagetitle": "54784_133",
+   "pagefile": "1206283.jp2",
+   "pageptr": "1206282"
+  },
+  {
+   "pagetitle": "54784_134",
+   "pagefile": "1206284.jp2",
+   "pageptr": "1206283"
+  },
+  {
+   "pagetitle": "54784_135",
+   "pagefile": "1206285.jp2",
+   "pageptr": "1206284"
+  },
+  {
+   "pagetitle": "54784_136",
+   "pagefile": "1206286.jp2",
+   "pageptr": "1206285"
+  },
+  {
+   "pagetitle": "54784_137",
+   "pagefile": "1206287.jp2",
+   "pageptr": "1206286"
+  },
+  {
+   "pagetitle": "54784_138",
+   "pagefile": "1206288.jp2",
+   "pageptr": "1206287"
+  },
+  {
+   "pagetitle": "54784_139",
+   "pagefile": "1206289.jp2",
+   "pageptr": "1206288"
+  },
+  {
+   "pagetitle": "54784_140",
+   "pagefile": "1206290.jp2",
+   "pageptr": "1206289"
+  },
+  {
+   "pagetitle": "54784_141",
+   "pagefile": "1206291.jp2",
+   "pageptr": "1206290"
+  },
+  {
+   "pagetitle": "54784_142",
+   "pagefile": "1206292.jp2",
+   "pageptr": "1206291"
+  },
+  {
+   "pagetitle": "54784_143",
+   "pagefile": "1206293.jp2",
+   "pageptr": "1206292"
+  },
+  {
+   "pagetitle": "54784_144",
+   "pagefile": "1206294.jp2",
+   "pageptr": "1206293"
+  },
+  {
+   "pagetitle": "54784_145",
+   "pagefile": "1206295.jp2",
+   "pageptr": "1206294"
+  },
+  {
+   "pagetitle": "54784_146",
+   "pagefile": "1206296.jp2",
+   "pageptr": "1206295"
+  },
+  {
+   "pagetitle": "54784_147",
+   "pagefile": "1206297.jp2",
+   "pageptr": "1206296"
+  },
+  {
+   "pagetitle": "54784_148",
+   "pagefile": "1206298.jp2",
+   "pageptr": "1206297"
+  },
+  {
+   "pagetitle": "54784_149",
+   "pagefile": "1206299.jp2",
+   "pageptr": "1206298"
+  },
+  {
+   "pagetitle": "54784_150",
+   "pagefile": "1206300.jp2",
+   "pageptr": "1206299"
+  },
+  {
+   "pagetitle": "54784_151",
+   "pagefile": "1206301.jp2",
+   "pageptr": "1206300"
+  },
+  {
+   "pagetitle": "54784_152",
+   "pagefile": "1206302.jp2",
+   "pageptr": "1206301"
+  },
+  {
+   "pagetitle": "54784_153",
+   "pagefile": "1206303.jp2",
+   "pageptr": "1206302"
+  },
+  {
+   "pagetitle": "54784_154",
+   "pagefile": "1206304.jp2",
+   "pageptr": "1206303"
+  },
+  {
+   "pagetitle": "54784_155",
+   "pagefile": "1206305.jp2",
+   "pageptr": "1206304"
+  },
+  {
+   "pagetitle": "54784_156",
+   "pagefile": "1206306.jp2",
+   "pageptr": "1206305"
+  },
+  {
+   "pagetitle": "54784_157",
+   "pagefile": "1206307.jp2",
+   "pageptr": "1206306"
+  },
+  {
+   "pagetitle": "54784_158",
+   "pagefile": "1206308.jp2",
+   "pageptr": "1206307"
+  },
+  {
+   "pagetitle": "54784_159",
+   "pagefile": "1206309.jp2",
+   "pageptr": "1206308"
+  },
+  {
+   "pagetitle": "54784_160",
+   "pagefile": "1206310.jp2",
+   "pageptr": "1206309"
+  },
+  {
+   "pagetitle": "54784_161",
+   "pagefile": "1206311.jp2",
+   "pageptr": "1206310"
+  },
+  {
+   "pagetitle": "54784_162",
+   "pagefile": "1206312.jp2",
+   "pageptr": "1206311"
+  },
+  {
+   "pagetitle": "54784_163",
+   "pagefile": "1206313.jp2",
+   "pageptr": "1206312"
+  },
+  {
+   "pagetitle": "54784_164",
+   "pagefile": "1206314.jp2",
+   "pageptr": "1206313"
+  },
+  {
+   "pagetitle": "54784_165",
+   "pagefile": "1206315.jp2",
+   "pageptr": "1206314"
+  },
+  {
+   "pagetitle": "54784_166",
+   "pagefile": "1206316.jp2",
+   "pageptr": "1206315"
+  },
+  {
+   "pagetitle": "54784_167",
+   "pagefile": "1206317.jp2",
+   "pageptr": "1206316"
+  },
+  {
+   "pagetitle": "54784_168",
+   "pagefile": "1206318.jp2",
+   "pageptr": "1206317"
+  },
+  {
+   "pagetitle": "54784_169",
+   "pagefile": "1206319.jp2",
+   "pageptr": "1206318"
+  },
+  {
+   "pagetitle": "54784_170",
+   "pagefile": "1206320.jp2",
+   "pageptr": "1206319"
+  },
+  {
+   "pagetitle": "54784_171",
+   "pagefile": "1206321.jp2",
+   "pageptr": "1206320"
+  },
+  {
+   "pagetitle": "54784_172",
+   "pagefile": "1206322.jp2",
+   "pageptr": "1206321"
+  },
+  {
+   "pagetitle": "54784_173",
+   "pagefile": "1206323.jp2",
+   "pageptr": "1206322"
+  },
+  {
+   "pagetitle": "54784_174",
+   "pagefile": "1206324.jp2",
+   "pageptr": "1206323"
+  },
+  {
+   "pagetitle": "54784_175",
+   "pagefile": "1206325.jp2",
+   "pageptr": "1206324"
+  },
+  {
+   "pagetitle": "54784_176",
+   "pagefile": "1206326.jp2",
+   "pageptr": "1206325"
+  },
+  {
+   "pagetitle": "54784_177",
+   "pagefile": "1206327.jp2",
+   "pageptr": "1206326"
+  },
+  {
+   "pagetitle": "54784_178",
+   "pagefile": "1206328.jp2",
+   "pageptr": "1206327"
+  },
+  {
+   "pagetitle": "54784_179",
+   "pagefile": "1206329.jp2",
+   "pageptr": "1206328"
+  },
+  {
+   "pagetitle": "54784_180",
+   "pagefile": "1206330.jp2",
+   "pageptr": "1206329"
+  },
+  {
+   "pagetitle": "54784_181",
+   "pagefile": "1206331.jp2",
+   "pageptr": "1206330"
+  },
+  {
+   "pagetitle": "54784_182",
+   "pagefile": "1206332.jp2",
+   "pageptr": "1206331"
+  },
+  {
+   "pagetitle": "54784_183",
+   "pagefile": "1206333.jp2",
+   "pageptr": "1206332"
+  },
+  {
+   "pagetitle": "54784_184",
+   "pagefile": "1206334.jp2",
+   "pageptr": "1206333"
+  },
+  {
+   "pagetitle": "54784_185",
+   "pagefile": "1206335.jp2",
+   "pageptr": "1206334"
+  },
+  {
+   "pagetitle": "54784_186",
+   "pagefile": "1206336.jp2",
+   "pageptr": "1206335"
+  },
+  {
+   "pagetitle": "54784_187",
+   "pagefile": "1206337.jp2",
+   "pageptr": "1206336"
+  },
+  {
+   "pagetitle": "54784_188",
+   "pagefile": "1206338.jp2",
+   "pageptr": "1206337"
+  },
+  {
+   "pagetitle": "54784_189",
+   "pagefile": "1206339.jp2",
+   "pageptr": "1206338"
+  },
+  {
+   "pagetitle": "54784_190",
+   "pagefile": "1206340.jp2",
+   "pageptr": "1206339"
+  },
+  {
+   "pagetitle": "54784_191",
+   "pagefile": "1206341.jp2",
+   "pageptr": "1206340"
+  },
+  {
+   "pagetitle": "54784_192",
+   "pagefile": "1206342.jp2",
+   "pageptr": "1206341"
+  },
+  {
+   "pagetitle": "54784_193",
+   "pagefile": "1206343.jp2",
+   "pageptr": "1206342"
+  },
+  {
+   "pagetitle": "54784_194",
+   "pagefile": "1206344.jp2",
+   "pageptr": "1206343"
+  },
+  {
+   "pagetitle": "54784_195",
+   "pagefile": "1206345.jp2",
+   "pageptr": "1206344"
+  },
+  {
+   "pagetitle": "54784_196",
+   "pagefile": "1206346.jp2",
+   "pageptr": "1206345"
+  },
+  {
+   "pagetitle": "54784_197",
+   "pagefile": "1206347.jp2",
+   "pageptr": "1206346"
+  },
+  {
+   "pagetitle": "54784_198",
+   "pagefile": "1206348.jp2",
+   "pageptr": "1206347"
+  },
+  {
+   "pagetitle": "54784_199",
+   "pagefile": "1206349.jp2",
+   "pageptr": "1206348"
+  },
+  {
+   "pagetitle": "54784_200",
+   "pagefile": "1206350.jp2",
+   "pageptr": "1206349"
+  },
+  {
+   "pagetitle": "54784_201",
+   "pagefile": "1206351.jp2",
+   "pageptr": "1206350"
+  },
+  {
+   "pagetitle": "54784_202",
+   "pagefile": "1206352.jp2",
+   "pageptr": "1206351"
+  },
+  {
+   "pagetitle": "54784_203",
+   "pagefile": "1206353.jp2",
+   "pageptr": "1206352"
+  },
+  {
+   "pagetitle": "54784_204",
+   "pagefile": "1206354.jp2",
+   "pageptr": "1206353"
+  },
+  {
+   "pagetitle": "54784_205",
+   "pagefile": "1206355.jp2",
+   "pageptr": "1206354"
+  },
+  {
+   "pagetitle": "54784_206",
+   "pagefile": "1206356.jp2",
+   "pageptr": "1206355"
+  },
+  {
+   "pagetitle": "54784_207",
+   "pagefile": "1206357.jp2",
+   "pageptr": "1206356"
+  },
+  {
+   "pagetitle": "54784_208",
+   "pagefile": "1206358.jp2",
+   "pageptr": "1206357"
+  },
+  {
+   "pagetitle": "54784_209",
+   "pagefile": "1206359.jp2",
+   "pageptr": "1206358"
+  },
+  {
+   "pagetitle": "54784_210",
+   "pagefile": "1206360.jp2",
+   "pageptr": "1206359"
+  },
+  {
+   "pagetitle": "54784_211",
+   "pagefile": "1206361.jp2",
+   "pageptr": "1206360"
+  },
+  {
+   "pagetitle": "54784_212",
+   "pagefile": "1206362.jp2",
+   "pageptr": "1206361"
+  },
+  {
+   "pagetitle": "54784_213",
+   "pagefile": "1206363.jp2",
+   "pageptr": "1206362"
+  },
+  {
+   "pagetitle": "54784_214",
+   "pagefile": "1206364.jp2",
+   "pageptr": "1206363"
+  },
+  {
+   "pagetitle": "54784_215",
+   "pagefile": "1206365.jp2",
+   "pageptr": "1206364"
+  },
+  {
+   "pagetitle": "54784_216",
+   "pagefile": "1206366.jp2",
+   "pageptr": "1206365"
+  },
+  {
+   "pagetitle": "54784_217",
+   "pagefile": "1206367.jp2",
+   "pageptr": "1206366"
+  },
+  {
+   "pagetitle": "54784_218",
+   "pagefile": "1206368.jp2",
+   "pageptr": "1206367"
+  },
+  {
+   "pagetitle": "54784_219",
+   "pagefile": "1206369.jp2",
+   "pageptr": "1206368"
+  },
+  {
+   "pagetitle": "54784_220",
+   "pagefile": "1206370.jp2",
+   "pageptr": "1206369"
+  },
+  {
+   "pagetitle": "54784_221",
+   "pagefile": "1206371.jp2",
+   "pageptr": "1206370"
+  },
+  {
+   "pagetitle": "54784_222",
+   "pagefile": "1206372.jp2",
+   "pageptr": "1206371"
+  },
+  {
+   "pagetitle": "54784_223",
+   "pagefile": "1206373.jp2",
+   "pageptr": "1206372"
+  },
+  {
+   "pagetitle": "54784_224",
+   "pagefile": "1206374.jp2",
+   "pageptr": "1206373"
+  },
+  {
+   "pagetitle": "54784_225",
+   "pagefile": "1206375.jp2",
+   "pageptr": "1206374"
+  },
+  {
+   "pagetitle": "54784_226",
+   "pagefile": "1206376.jp2",
+   "pageptr": "1206375"
+  },
+  {
+   "pagetitle": "54784_227",
+   "pagefile": "1206377.jp2",
+   "pageptr": "1206376"
+  },
+  {
+   "pagetitle": "54784_228",
+   "pagefile": "1206378.jp2",
+   "pageptr": "1206377"
+  },
+  {
+   "pagetitle": "54784_229",
+   "pagefile": "1206379.jp2",
+   "pageptr": "1206378"
+  },
+  {
+   "pagetitle": "54784_230",
+   "pagefile": "1206380.jp2",
+   "pageptr": "1206379"
+  },
+  {
+   "pagetitle": "54784_231",
+   "pagefile": "1206381.jp2",
+   "pageptr": "1206380"
+  },
+  {
+   "pagetitle": "54784_232",
+   "pagefile": "1206382.jp2",
+   "pageptr": "1206381"
+  },
+  {
+   "pagetitle": "54784_233",
+   "pagefile": "1206383.jp2",
+   "pageptr": "1206382"
+  },
+  {
+   "pagetitle": "54784_234",
+   "pagefile": "1206384.jp2",
+   "pageptr": "1206383"
+  },
+  {
+   "pagetitle": "54784_235",
+   "pagefile": "1206385.jp2",
+   "pageptr": "1206384"
+  },
+  {
+   "pagetitle": "54784_236",
+   "pagefile": "1206386.jp2",
+   "pageptr": "1206385"
+  },
+  {
+   "pagetitle": "54784_237",
+   "pagefile": "1206387.jp2",
+   "pageptr": "1206386"
+  },
+  {
+   "pagetitle": "54784_238",
+   "pagefile": "1206388.jp2",
+   "pageptr": "1206387"
+  },
+  {
+   "pagetitle": "54784_239",
+   "pagefile": "1206389.jp2",
+   "pageptr": "1206388"
+  },
+  {
+   "pagetitle": "54784_240",
+   "pagefile": "1206390.jp2",
+   "pageptr": "1206389"
+  },
+  {
+   "pagetitle": "54784_241",
+   "pagefile": "1206391.jp2",
+   "pageptr": "1206390"
+  },
+  {
+   "pagetitle": "54784_242",
+   "pagefile": "1206392.jp2",
+   "pageptr": "1206391"
+  },
+  {
+   "pagetitle": "54784_243",
+   "pagefile": "1206393.jp2",
+   "pageptr": "1206392"
+  },
+  {
+   "pagetitle": "54784_244",
+   "pagefile": "1206394.jp2",
+   "pageptr": "1206393"
+  },
+  {
+   "pagetitle": "54784_245",
+   "pagefile": "1206395.jp2",
+   "pageptr": "1206394"
+  },
+  {
+   "pagetitle": "54784_246",
+   "pagefile": "1206396.jp2",
+   "pageptr": "1206395"
+  },
+  {
+   "pagetitle": "54784_247",
+   "pagefile": "1206397.jp2",
+   "pageptr": "1206396"
+  },
+  {
+   "pagetitle": "54784_248",
+   "pagefile": "1206398.jp2",
+   "pageptr": "1206397"
+  },
+  {
+   "pagetitle": "54784_249",
+   "pagefile": "1206399.jp2",
+   "pageptr": "1206398"
+  },
+  {
+   "pagetitle": "54784_250",
+   "pagefile": "1206400.jp2",
+   "pageptr": "1206399"
+  },
+  {
+   "pagetitle": "54784_251",
+   "pagefile": "1206401.jp2",
+   "pageptr": "1206400"
+  },
+  {
+   "pagetitle": "54784_252",
+   "pagefile": "1206402.jp2",
+   "pageptr": "1206401"
+  },
+  {
+   "pagetitle": "54784_253",
+   "pagefile": "1206403.jp2",
+   "pageptr": "1206402"
+  },
+  {
+   "pagetitle": "54784_254",
+   "pagefile": "1206404.jp2",
+   "pageptr": "1206403"
+  },
+  {
+   "pagetitle": "54784_255",
+   "pagefile": "1206405.jp2",
+   "pageptr": "1206404"
+  },
+  {
+   "pagetitle": "54784_256",
+   "pagefile": "1206406.jp2",
+   "pageptr": "1206405"
+  },
+  {
+   "pagetitle": "54784_257",
+   "pagefile": "1206407.jp2",
+   "pageptr": "1206406"
+  },
+  {
+   "pagetitle": "54784_258",
+   "pagefile": "1206408.jp2",
+   "pageptr": "1206407"
+  },
+  {
+   "pagetitle": "54784_259",
+   "pagefile": "1206409.jp2",
+   "pageptr": "1206408"
+  },
+  {
+   "pagetitle": "54784_260",
+   "pagefile": "1206410.jp2",
+   "pageptr": "1206409"
+  },
+  {
+   "pagetitle": "54784_261",
+   "pagefile": "1206411.jp2",
+   "pageptr": "1206410"
+  },
+  {
+   "pagetitle": "54784_262",
+   "pagefile": "1206412.jp2",
+   "pageptr": "1206411"
+  },
+  {
+   "pagetitle": "54784_263",
+   "pagefile": "1206413.jp2",
+   "pageptr": "1206412"
+  },
+  {
+   "pagetitle": "54784_264",
+   "pagefile": "1206414.jp2",
+   "pageptr": "1206413"
+  },
+  {
+   "pagetitle": "54784_265",
+   "pagefile": "1206415.jp2",
+   "pageptr": "1206414"
+  },
+  {
+   "pagetitle": "54784_266",
+   "pagefile": "1206416.jp2",
+   "pageptr": "1206415"
+  },
+  {
+   "pagetitle": "54784_267",
+   "pagefile": "1206417.jp2",
+   "pageptr": "1206416"
+  },
+  {
+   "pagetitle": "54784_268",
+   "pagefile": "1206418.jp2",
+   "pageptr": "1206417"
+  },
+  {
+   "pagetitle": "54784_269",
+   "pagefile": "1206419.jp2",
+   "pageptr": "1206418"
+  },
+  {
+   "pagetitle": "54784_270",
+   "pagefile": "1206420.jp2",
+   "pageptr": "1206419"
+  },
+  {
+   "pagetitle": "54784_271",
+   "pagefile": "1206421.jp2",
+   "pageptr": "1206420"
+  },
+  {
+   "pagetitle": "54784_272",
+   "pagefile": "1206422.jp2",
+   "pageptr": "1206421"
+  },
+  {
+   "pagetitle": "54784_273",
+   "pagefile": "1206423.jp2",
+   "pageptr": "1206422"
+  },
+  {
+   "pagetitle": "54784_274",
+   "pagefile": "1206424.jp2",
+   "pageptr": "1206423"
+  },
+  {
+   "pagetitle": "54784_275",
+   "pagefile": "1206425.jp2",
+   "pageptr": "1206424"
+  },
+  {
+   "pagetitle": "54784_276",
+   "pagefile": "1206426.jp2",
+   "pageptr": "1206425"
+  },
+  {
+   "pagetitle": "54784_277",
+   "pagefile": "1206427.jp2",
+   "pageptr": "1206426"
+  },
+  {
+   "pagetitle": "54784_278",
+   "pagefile": "1206428.jp2",
+   "pageptr": "1206427"
+  },
+  {
+   "pagetitle": "54784_279",
+   "pagefile": "1206429.jp2",
+   "pageptr": "1206428"
+  },
+  {
+   "pagetitle": "54784_280",
+   "pagefile": "1206430.jp2",
+   "pageptr": "1206429"
+  },
+  {
+   "pagetitle": "54784_281",
+   "pagefile": "1206431.jp2",
+   "pageptr": "1206430"
+  },
+  {
+   "pagetitle": "54784_282",
+   "pagefile": "1206432.jp2",
+   "pageptr": "1206431"
+  },
+  {
+   "pagetitle": "54784_283",
+   "pagefile": "1206433.jp2",
+   "pageptr": "1206432"
+  },
+  {
+   "pagetitle": "54784_284",
+   "pagefile": "1206434.jp2",
+   "pageptr": "1206433"
+  },
+  {
+   "pagetitle": "54784_285",
+   "pagefile": "1206435.jp2",
+   "pageptr": "1206434"
+  },
+  {
+   "pagetitle": "54784_286",
+   "pagefile": "1206436.jp2",
+   "pageptr": "1206435"
+  },
+  {
+   "pagetitle": "54784_287",
+   "pagefile": "1206437.jp2",
+   "pageptr": "1206436"
+  },
+  {
+   "pagetitle": "54784_288",
+   "pagefile": "1206438.jp2",
+   "pageptr": "1206437"
+  },
+  {
+   "pagetitle": "54784_289",
+   "pagefile": "1206439.jp2",
+   "pageptr": "1206438"
+  },
+  {
+   "pagetitle": "54784_290",
+   "pagefile": "1206440.jp2",
+   "pageptr": "1206439"
+  },
+  {
+   "pagetitle": "54784_291",
+   "pagefile": "1206441.jp2",
+   "pageptr": "1206440"
+  },
+  {
+   "pagetitle": "54784_292",
+   "pagefile": "1206442.jp2",
+   "pageptr": "1206441"
+  },
+  {
+   "pagetitle": "54784_293",
+   "pagefile": "1206443.jp2",
+   "pageptr": "1206442"
+  },
+  {
+   "pagetitle": "54784_294",
+   "pagefile": "1206444.jp2",
+   "pageptr": "1206443"
+  },
+  {
+   "pagetitle": "54784_295",
+   "pagefile": "1206445.jp2",
+   "pageptr": "1206444"
+  },
+  {
+   "pagetitle": "54784_296",
+   "pagefile": "1206446.jp2",
+   "pageptr": "1206445"
+  },
+  {
+   "pagetitle": "54784_297",
+   "pagefile": "1206447.jp2",
+   "pageptr": "1206446"
+  },
+  {
+   "pagetitle": "54784_298",
+   "pagefile": "1206448.jp2",
+   "pageptr": "1206447"
+  },
+  {
+   "pagetitle": "54784_299",
+   "pagefile": "1206449.jp2",
+   "pageptr": "1206448"
+  },
+  {
+   "pagetitle": "54784_300",
+   "pagefile": "1206450.jp2",
+   "pageptr": "1206449"
+  },
+  {
+   "pagetitle": "54784_301",
+   "pagefile": "1206451.jp2",
+   "pageptr": "1206450"
+  },
+  {
+   "pagetitle": "54784_302",
+   "pagefile": "1206452.jp2",
+   "pageptr": "1206451"
+  },
+  {
+   "pagetitle": "54784_303",
+   "pagefile": "1206453.jp2",
+   "pageptr": "1206452"
+  },
+  {
+   "pagetitle": "54784_304",
+   "pagefile": "1206454.jp2",
+   "pageptr": "1206453"
+  },
+  {
+   "pagetitle": "54784_305",
+   "pagefile": "1206455.jp2",
+   "pageptr": "1206454"
+  },
+  {
+   "pagetitle": "54784_306",
+   "pagefile": "1206456.jp2",
+   "pageptr": "1206455"
+  },
+  {
+   "pagetitle": "54784_307",
+   "pagefile": "1206457.jp2",
+   "pageptr": "1206456"
+  },
+  {
+   "pagetitle": "54784_308",
+   "pagefile": "1206458.jp2",
+   "pageptr": "1206457"
+  },
+  {
+   "pagetitle": "54784_309",
+   "pagefile": "1206459.jp2",
+   "pageptr": "1206458"
+  },
+  {
+   "pagetitle": "54784_310",
+   "pagefile": "1206460.jp2",
+   "pageptr": "1206459"
+  },
+  {
+   "pagetitle": "54784_311",
+   "pagefile": "1206461.jp2",
+   "pageptr": "1206460"
+  },
+  {
+   "pagetitle": "54784_312",
+   "pagefile": "1206462.jp2",
+   "pageptr": "1206461"
+  },
+  {
+   "pagetitle": "54784_313",
+   "pagefile": "1206463.jp2",
+   "pageptr": "1206462"
+  },
+  {
+   "pagetitle": "54784_314",
+   "pagefile": "1206464.jp2",
+   "pageptr": "1206463"
+  },
+  {
+   "pagetitle": "54784_315",
+   "pagefile": "1206465.jp2",
+   "pageptr": "1206464"
+  },
+  {
+   "pagetitle": "54784_316",
+   "pagefile": "1206466.jp2",
+   "pageptr": "1206465"
+  },
+  {
+   "pagetitle": "54784_317",
+   "pagefile": "1206467.jp2",
+   "pageptr": "1206466"
+  },
+  {
+   "pagetitle": "54784_318",
+   "pagefile": "1206468.jp2",
+   "pageptr": "1206467"
+  },
+  {
+   "pagetitle": "54784_319",
+   "pagefile": "1206469.jp2",
+   "pageptr": "1206468"
+  },
+  {
+   "pagetitle": "54784_320",
+   "pagefile": "1206470.jp2",
+   "pageptr": "1206469"
+  },
+  {
+   "pagetitle": "54784_321",
+   "pagefile": "1206471.jp2",
+   "pageptr": "1206470"
+  },
+  {
+   "pagetitle": "54784_322",
+   "pagefile": "1206472.jp2",
+   "pageptr": "1206471"
+  },
+  {
+   "pagetitle": "54784_323",
+   "pagefile": "1206473.jp2",
+   "pageptr": "1206472"
+  },
+  {
+   "pagetitle": "54784_324",
+   "pagefile": "1206474.jp2",
+   "pageptr": "1206473"
+  },
+  {
+   "pagetitle": "54784_325",
+   "pagefile": "1206475.jp2",
+   "pageptr": "1206474"
+  },
+  {
+   "pagetitle": "54784_326",
+   "pagefile": "1206476.jp2",
+   "pageptr": "1206475"
+  },
+  {
+   "pagetitle": "54784_327",
+   "pagefile": "1206477.jp2",
+   "pageptr": "1206476"
+  },
+  {
+   "pagetitle": "54784_328",
+   "pagefile": "1206478.jp2",
+   "pageptr": "1206477"
+  },
+  {
+   "pagetitle": "54784_329",
+   "pagefile": "1206479.jp2",
+   "pageptr": "1206478"
+  },
+  {
+   "pagetitle": "54784_330",
+   "pagefile": "1206480.jp2",
+   "pageptr": "1206479"
+  },
+  {
+   "pagetitle": "54784_331",
+   "pagefile": "1206481.jp2",
+   "pageptr": "1206480"
+  },
+  {
+   "pagetitle": "54784_332",
+   "pagefile": "1206482.jp2",
+   "pageptr": "1206481"
+  },
+  {
+   "pagetitle": "54784_333",
+   "pagefile": "1206483.jp2",
+   "pageptr": "1206482"
+  },
+  {
+   "pagetitle": "54784_334",
+   "pagefile": "1206484.jp2",
+   "pageptr": "1206483"
+  },
+  {
+   "pagetitle": "54784_335",
+   "pagefile": "1206485.jp2",
+   "pageptr": "1206484"
+  },
+  {
+   "pagetitle": "54784_336",
+   "pagefile": "1206486.jp2",
+   "pageptr": "1206485"
+  },
+  {
+   "pagetitle": "54784_337",
+   "pagefile": "1206487.jp2",
+   "pageptr": "1206486"
+  },
+  {
+   "pagetitle": "54784_338",
+   "pagefile": "1206488.jp2",
+   "pageptr": "1206487"
+  },
+  {
+   "pagetitle": "54784_339",
+   "pagefile": "1206489.jp2",
+   "pageptr": "1206488"
+  },
+  {
+   "pagetitle": "54784_340",
+   "pagefile": "1206490.jp2",
+   "pageptr": "1206489"
+  },
+  {
+   "pagetitle": "54784_341",
+   "pagefile": "1206491.jp2",
+   "pageptr": "1206490"
+  },
+  {
+   "pagetitle": "54784_342",
+   "pagefile": "1206492.jp2",
+   "pageptr": "1206491"
+  },
+  {
+   "pagetitle": "54784_343",
+   "pagefile": "1206493.jp2",
+   "pageptr": "1206492"
+  },
+  {
+   "pagetitle": "54784_344",
+   "pagefile": "1206494.jp2",
+   "pageptr": "1206493"
+  },
+  {
+   "pagetitle": "54784_345",
+   "pagefile": "1206495.jp2",
+   "pageptr": "1206494"
+  },
+  {
+   "pagetitle": "54784_346",
+   "pagefile": "1206496.jp2",
+   "pageptr": "1206495"
+  },
+  {
+   "pagetitle": "54784_347",
+   "pagefile": "1206497.jp2",
+   "pageptr": "1206496"
+  },
+  {
+   "pagetitle": "54784_348",
+   "pagefile": "1206498.jp2",
+   "pageptr": "1206497"
+  },
+  {
+   "pagetitle": "54784_349",
+   "pagefile": "1206499.jp2",
+   "pageptr": "1206498"
+  },
+  {
+   "pagetitle": "54784_350",
+   "pagefile": "1206500.jp2",
+   "pageptr": "1206499"
+  },
+  {
+   "pagetitle": "54784_351",
+   "pagefile": "1206501.jp2",
+   "pageptr": "1206500"
+  },
+  {
+   "pagetitle": "54784_352",
+   "pagefile": "1206502.jp2",
+   "pageptr": "1206501"
+  },
+  {
+   "pagetitle": "54784_353",
+   "pagefile": "1206503.jp2",
+   "pageptr": "1206502"
+  },
+  {
+   "pagetitle": "54784_354",
+   "pagefile": "1206504.jp2",
+   "pageptr": "1206503"
+  },
+  {
+   "pagetitle": "54784_355",
+   "pagefile": "1206505.jp2",
+   "pageptr": "1206504"
+  },
+  {
+   "pagetitle": "54784_356",
+   "pagefile": "1206506.jp2",
+   "pageptr": "1206505"
+  },
+  {
+   "pagetitle": "54784_357",
+   "pagefile": "1206507.jp2",
+   "pageptr": "1206506"
+  },
+  {
+   "pagetitle": "54784_358",
+   "pagefile": "1206508.jp2",
+   "pageptr": "1206507"
+  },
+  {
+   "pagetitle": "54784_359",
+   "pagefile": "1206509.jp2",
+   "pageptr": "1206508"
+  },
+  {
+   "pagetitle": "54784_360",
+   "pagefile": "1206510.jp2",
+   "pageptr": "1206509"
+  },
+  {
+   "pagetitle": "54784_361",
+   "pagefile": "1206511.jp2",
+   "pageptr": "1206510"
+  },
+  {
+   "pagetitle": "54784_362",
+   "pagefile": "1206512.jp2",
+   "pageptr": "1206511"
+  },
+  {
+   "pagetitle": "54784_363",
+   "pagefile": "1206513.jp2",
+   "pageptr": "1206512"
+  },
+  {
+   "pagetitle": "54784_364",
+   "pagefile": "1206514.jp2",
+   "pageptr": "1206513"
+  },
+  {
+   "pagetitle": "54784_365",
+   "pagefile": "1206515.jp2",
+   "pageptr": "1206514"
+  },
+  {
+   "pagetitle": "54784_366",
+   "pagefile": "1206516.jp2",
+   "pageptr": "1206515"
+  },
+  {
+   "pagetitle": "54784_367",
+   "pagefile": "1206517.jp2",
+   "pageptr": "1206516"
+  },
+  {
+   "pagetitle": "54784_368",
+   "pagefile": "1206518.jp2",
+   "pageptr": "1206517"
+  },
+  {
+   "pagetitle": "54784_369",
+   "pagefile": "1206519.jp2",
+   "pageptr": "1206518"
+  },
+  {
+   "pagetitle": "54784_370",
+   "pagefile": "1206520.jp2",
+   "pageptr": "1206519"
+  },
+  {
+   "pagetitle": "54784_371",
+   "pagefile": "1206521.jp2",
+   "pageptr": "1206520"
+  },
+  {
+   "pagetitle": "54784_372",
+   "pagefile": "1206522.jp2",
+   "pageptr": "1206521"
+  },
+  {
+   "pagetitle": "54784_373",
+   "pagefile": "1206523.jp2",
+   "pageptr": "1206522"
+  },
+  {
+   "pagetitle": "54784_374",
+   "pagefile": "1206524.jp2",
+   "pageptr": "1206523"
+  },
+  {
+   "pagetitle": "54784_375",
+   "pagefile": "1206525.jp2",
+   "pageptr": "1206524"
+  },
+  {
+   "pagetitle": "54784_376",
+   "pagefile": "1206526.jp2",
+   "pageptr": "1206525"
+  },
+  {
+   "pagetitle": "54784_377",
+   "pagefile": "1206527.jp2",
+   "pageptr": "1206526"
+  },
+  {
+   "pagetitle": "54784_378",
+   "pagefile": "1206528.jp2",
+   "pageptr": "1206527"
+  },
+  {
+   "pagetitle": "54784_379",
+   "pagefile": "1206529.jp2",
+   "pageptr": "1206528"
+  },
+  {
+   "pagetitle": "54784_380",
+   "pagefile": "1206530.jp2",
+   "pageptr": "1206529"
+  },
+  {
+   "pagetitle": "54784_381",
+   "pagefile": "1206531.jp2",
+   "pageptr": "1206530"
+  },
+  {
+   "pagetitle": "54784_382",
+   "pagefile": "1206532.jp2",
+   "pageptr": "1206531"
+  },
+  {
+   "pagetitle": "54784_383",
+   "pagefile": "1206533.jp2",
+   "pageptr": "1206532"
+  },
+  {
+   "pagetitle": "54784_384",
+   "pagefile": "1206534.jp2",
+   "pageptr": "1206533"
+  },
+  {
+   "pagetitle": "54784_385",
+   "pagefile": "1206535.jp2",
+   "pageptr": "1206534"
+  },
+  {
+   "pagetitle": "54784_386",
+   "pagefile": "1206536.jp2",
+   "pageptr": "1206535"
+  },
+  {
+   "pagetitle": "54784_387",
+   "pagefile": "1206537.jp2",
+   "pageptr": "1206536"
+  },
+  {
+   "pagetitle": "54784_388",
+   "pagefile": "1206538.jp2",
+   "pageptr": "1206537"
+  },
+  {
+   "pagetitle": "54784_389",
+   "pagefile": "1206539.jp2",
+   "pageptr": "1206538"
+  },
+  {
+   "pagetitle": "54784_390",
+   "pagefile": "1206540.jp2",
+   "pageptr": "1206539"
+  },
+  {
+   "pagetitle": "54784_391",
+   "pagefile": "1206541.jp2",
+   "pageptr": "1206540"
+  },
+  {
+   "pagetitle": "54784_392",
+   "pagefile": "1206542.jp2",
+   "pageptr": "1206541"
+  },
+  {
+   "pagetitle": "54784_393",
+   "pagefile": "1206543.jp2",
+   "pageptr": "1206542"
+  },
+  {
+   "pagetitle": "54784_394",
+   "pagefile": "1206544.jp2",
+   "pageptr": "1206543"
+  },
+  {
+   "pagetitle": "54784_395",
+   "pagefile": "1206545.jp2",
+   "pageptr": "1206544"
+  },
+  {
+   "pagetitle": "54784_396",
+   "pagefile": "1206546.jp2",
+   "pageptr": "1206545"
+  },
+  {
+   "pagetitle": "54784_397",
+   "pagefile": "1206547.jp2",
+   "pageptr": "1206546"
+  },
+  {
+   "pagetitle": "54784_398",
+   "pagefile": "1206548.jp2",
+   "pageptr": "1206547"
+  },
+  {
+   "pagetitle": "54784_399",
+   "pagefile": "1206549.jp2",
+   "pageptr": "1206548"
+  },
+  {
+   "pagetitle": "54784_400",
+   "pagefile": "1206550.jp2",
+   "pageptr": "1206549"
+  },
+  {
+   "pagetitle": "54784_401",
+   "pagefile": "1206551.jp2",
+   "pageptr": "1206550"
+  },
+  {
+   "pagetitle": "54784_402",
+   "pagefile": "1206552.jp2",
+   "pageptr": "1206551"
+  },
+  {
+   "pagetitle": "54784_403",
+   "pagefile": "1206553.jp2",
+   "pageptr": "1206552"
+  },
+  {
+   "pagetitle": "54784_404",
+   "pagefile": "1206554.jp2",
+   "pageptr": "1206553"
+  },
+  {
+   "pagetitle": "54784_405",
+   "pagefile": "1206555.jp2",
+   "pageptr": "1206554"
+  },
+  {
+   "pagetitle": "54784_406",
+   "pagefile": "1206556.jp2",
+   "pageptr": "1206555"
+  },
+  {
+   "pagetitle": "54784_407",
+   "pagefile": "1206557.jp2",
+   "pageptr": "1206556"
+  },
+  {
+   "pagetitle": "54784_408",
+   "pagefile": "1206558.jp2",
+   "pageptr": "1206557"
+  },
+  {
+   "pagetitle": "54784_409",
+   "pagefile": "1206559.jp2",
+   "pageptr": "1206558"
+  },
+  {
+   "pagetitle": "54784_410",
+   "pagefile": "1206560.jp2",
+   "pageptr": "1206559"
+  },
+  {
+   "pagetitle": "54784_411",
+   "pagefile": "1206561.jp2",
+   "pageptr": "1206560"
+  },
+  {
+   "pagetitle": "54784_412",
+   "pagefile": "1206562.jp2",
+   "pageptr": "1206561"
+  },
+  {
+   "pagetitle": "54784_413",
+   "pagefile": "1206563.jp2",
+   "pageptr": "1206562"
+  },
+  {
+   "pagetitle": "54784_414",
+   "pagefile": "1206564.jp2",
+   "pageptr": "1206563"
+  },
+  {
+   "pagetitle": "54784_415",
+   "pagefile": "1206565.jp2",
+   "pageptr": "1206564"
+  },
+  {
+   "pagetitle": "54784_416",
+   "pagefile": "1206566.jp2",
+   "pageptr": "1206565"
+  },
+  {
+   "pagetitle": "54784_417",
+   "pagefile": "1206567.jp2",
+   "pageptr": "1206566"
+  },
+  {
+   "pagetitle": "54784_418",
+   "pagefile": "1206568.jp2",
+   "pageptr": "1206567"
+  },
+  {
+   "pagetitle": "54784_419",
+   "pagefile": "1206569.jp2",
+   "pageptr": "1206568"
+  },
+  {
+   "pagetitle": "54784_420",
+   "pagefile": "1206570.jp2",
+   "pageptr": "1206569"
+  },
+  {
+   "pagetitle": "54784_421",
+   "pagefile": "1206571.jp2",
+   "pageptr": "1206570"
+  },
+  {
+   "pagetitle": "54784_422",
+   "pagefile": "1206572.jp2",
+   "pageptr": "1206571"
+  },
+  {
+   "pagetitle": "54784_423",
+   "pagefile": "1206573.jp2",
+   "pageptr": "1206572"
+  },
+  {
+   "pagetitle": "54784_424",
+   "pagefile": "1206574.jp2",
+   "pageptr": "1206573"
+  },
+  {
+   "pagetitle": "54784_425",
+   "pagefile": "1206575.jp2",
+   "pageptr": "1206574"
+  },
+  {
+   "pagetitle": "54784_426",
+   "pagefile": "1206576.jp2",
+   "pageptr": "1206575"
+  },
+  {
+   "pagetitle": "54784_427",
+   "pagefile": "1206577.jp2",
+   "pageptr": "1206576"
+  },
+  {
+   "pagetitle": "54784_428",
+   "pagefile": "1206578.jp2",
+   "pageptr": "1206577"
+  },
+  {
+   "pagetitle": "54784_429",
+   "pagefile": "1206579.jp2",
+   "pageptr": "1206578"
+  },
+  {
+   "pagetitle": "54784_430",
+   "pagefile": "1206580.jp2",
+   "pageptr": "1206579"
+  },
+  {
+   "pagetitle": "54784_431",
+   "pagefile": "1206581.jp2",
+   "pageptr": "1206580"
+  },
+  {
+   "pagetitle": "54784_432",
+   "pagefile": "1206582.jp2",
+   "pageptr": "1206581"
+  },
+  {
+   "pagetitle": "54784_433",
+   "pagefile": "1206583.jp2",
+   "pageptr": "1206582"
+  },
+  {
+   "pagetitle": "54784_434",
+   "pagefile": "1206584.jp2",
+   "pageptr": "1206583"
+  },
+  {
+   "pagetitle": "54784_435",
+   "pagefile": "1206585.jp2",
+   "pageptr": "1206584"
+  },
+  {
+   "pagetitle": "54784_436",
+   "pagefile": "1206586.jp2",
+   "pageptr": "1206585"
+  },
+  {
+   "pagetitle": "54784_437",
+   "pagefile": "1206587.jp2",
+   "pageptr": "1206586"
+  },
+  {
+   "pagetitle": "54784_438",
+   "pagefile": "1206588.jp2",
+   "pageptr": "1206587"
+  },
+  {
+   "pagetitle": "54784_439",
+   "pagefile": "1206589.jp2",
+   "pageptr": "1206588"
+  },
+  {
+   "pagetitle": "54784_440",
+   "pagefile": "1206590.jp2",
+   "pageptr": "1206589"
+  },
+  {
+   "pagetitle": "54784_441",
+   "pagefile": "1206591.jp2",
+   "pageptr": "1206590"
+  },
+  {
+   "pagetitle": "54784_442",
+   "pagefile": "1206592.jp2",
+   "pageptr": "1206591"
+  },
+  {
+   "pagetitle": "54784_443",
+   "pagefile": "1206593.jp2",
+   "pageptr": "1206592"
+  },
+  {
+   "pagetitle": "54784_444",
+   "pagefile": "1206594.jp2",
+   "pageptr": "1206593"
+  },
+  {
+   "pagetitle": "54784_445",
+   "pagefile": "1206595.jp2",
+   "pageptr": "1206594"
+  },
+  {
+   "pagetitle": "54784_446",
+   "pagefile": "1206596.jp2",
+   "pageptr": "1206595"
+  },
+  {
+   "pagetitle": "54784_447",
+   "pagefile": "1206597.jp2",
+   "pageptr": "1206596"
+  },
+  {
+   "pagetitle": "54784_448",
+   "pagefile": "1206598.jp2",
+   "pageptr": "1206597"
+  },
+  {
+   "pagetitle": "54784_449",
+   "pagefile": "1206599.jp2",
+   "pageptr": "1206598"
+  },
+  {
+   "pagetitle": "54784_450",
+   "pagefile": "1206600.jp2",
+   "pageptr": "1206599"
+  },
+  {
+   "pagetitle": "54784_451",
+   "pagefile": "1206601.jp2",
+   "pageptr": "1206600"
+  },
+  {
+   "pagetitle": "54784_452",
+   "pagefile": "1206602.jp2",
+   "pageptr": "1206601"
+  },
+  {
+   "pagetitle": "54784_453",
+   "pagefile": "1206603.jp2",
+   "pageptr": "1206602"
+  },
+  {
+   "pagetitle": "54784_454",
+   "pagefile": "1206604.jp2",
+   "pageptr": "1206603"
+  },
+  {
+   "pagetitle": "54784_455",
+   "pagefile": "1206605.jp2",
+   "pageptr": "1206604"
+  },
+  {
+   "pagetitle": "54784_456",
+   "pagefile": "1206606.jp2",
+   "pageptr": "1206605"
+  },
+  {
+   "pagetitle": "54784_457",
+   "pagefile": "1206607.jp2",
+   "pageptr": "1206606"
+  },
+  {
+   "pagetitle": "54784_458",
+   "pagefile": "1206608.jp2",
+   "pageptr": "1206607"
+  },
+  {
+   "pagetitle": "54784_459",
+   "pagefile": "1206609.jp2",
+   "pageptr": "1206608"
+  },
+  {
+   "pagetitle": "54784_460",
+   "pagefile": "1206610.jp2",
+   "pageptr": "1206609"
+  },
+  {
+   "pagetitle": "54784_461",
+   "pagefile": "1206611.jp2",
+   "pageptr": "1206610"
+  },
+  {
+   "pagetitle": "54784_462",
+   "pagefile": "1206612.jp2",
+   "pageptr": "1206611"
+  },
+  {
+   "pagetitle": "54784_463",
+   "pagefile": "1206613.jp2",
+   "pageptr": "1206612"
+  },
+  {
+   "pagetitle": "54784_464",
+   "pagefile": "1206614.jp2",
+   "pageptr": "1206613"
+  },
+  {
+   "pagetitle": "54784_465",
+   "pagefile": "1206615.jp2",
+   "pageptr": "1206614"
+  },
+  {
+   "pagetitle": "54784_466",
+   "pagefile": "1206616.jp2",
+   "pageptr": "1206615"
+  }
+ ]
+}

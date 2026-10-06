@@ -1,0 +1,57 @@
+{
+  "cache_status": [],
+  "get_collection": [
+    "collection",
+    "instance",
+    "refresh"
+  ],
+  "get_image": [
+    "collection",
+    "destination",
+    "instance",
+    "max_pixels",
+    "page",
+    "pdf_page",
+    "pointer",
+    "url"
+  ],
+  "get_item": [
+    "collection",
+    "instance",
+    "pointer",
+    "refresh",
+    "text_chars",
+    "url"
+  ],
+  "get_pages": [
+    "collection",
+    "count",
+    "first",
+    "instance",
+    "pointer",
+    "query",
+    "refresh",
+    "url"
+  ],
+  "list_collections": [
+    "instance",
+    "name_contains",
+    "refresh"
+  ],
+  "list_instances": [
+    "include_unsupported",
+    "state"
+  ],
+  "search": [
+    "collection",
+    "count",
+    "field",
+    "instance",
+    "mode",
+    "page",
+    "page_hits",
+    "query",
+    "refresh",
+    "state"
+  ]
+}

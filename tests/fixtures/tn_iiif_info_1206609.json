@@ -1,0 +1,87 @@
+{
+ "@context": "http://iiif.io/api/image/2/context.json",
+ "@id": "https://teva.contentdm.oclc.org/iiif/2/p15138coll54:1206609",
+ "protocol": "http://iiif.io/api/image",
+ "width": 3068,
+ "height": 3444,
+ "sizes": [
+  {
+   "width": 96,
+   "height": 108
+  },
+  {
+   "width": 192,
+   "height": 215
+  },
+  {
+   "width": 384,
+   "height": 431
+  },
+  {
+   "width": 767,
+   "height": 861
+  },
+  {
+   "width": 1534,
+   "height": 1722
+  },
+  {
+   "width": 3068,
+   "height": 3444
+  }
+ ],
+ "tiles": [
+  {
+   "width": 1024,
+   "height": 1024,
+   "scaleFactors": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32
+   ]
+  }
+ ],
+ "profile": [
+  "http://iiif.io/api/image/2/level2.json",
+  {
+   "formats": [
+    "jpg",
+    "tif",
+    "gif",
+    "png"
+   ],
+   "maxArea": 21132384,
+   "qualities": [
+    "bitonal",
+    "default",
+    "gray",
+    "color"
+   ],
+   "supports": [
+    "regionByPx",
+    "sizeByW",
+    "sizeByWhListed",
+    "cors",
+    "regionSquare",
+    "sizeByDistortedWh",
+    "sizeAboveFull",
+    "canonicalLinkHeader",
+    "sizeByConfinedWh",
+    "sizeByPct",
+    "jsonldMediaType",
+    "regionByPct",
+    "rotationArbitrary",
+    "sizeByH",
+    "baseUriRedirect",
+    "rotationBy90s",
+    "profileLinkHeader",
+    "sizeByForcedWh",
+    "sizeByWh",
+    "mirroring"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+[
+ {
+  "alias": "/p15138coll24",
+  "name": "Calvert Brothers Studio Collection",
+  "path": "/cdm/sites/15138/data/p15138coll24",
+  "secondary_alias": "5"
+ },
+ {
+  "alias": "/p15138coll54",
+  "name": "Tennessee Death Records",
+  "path": "/cdm/sites/15138/data/p15138coll54",
+  "secondary_alias": "p15138coll54"
+ },
+ {
+  "alias": "/p15138coll56",
+  "name": "Tennessee Marriage Records",
+  "path": "/cdm/sites/15138/data/p15138coll56",
+  "secondary_alias": "p15138coll56"
+ }
+]

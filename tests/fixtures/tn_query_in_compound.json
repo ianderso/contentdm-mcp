@@ -1,0 +1,17 @@
+{
+ "pager": {
+  "start": "1",
+  "maxrecs": "1024",
+  "total": 1
+ },
+ "records": [
+  {
+   "collection": "/p15138coll54",
+   "pointer": 1206609,
+   "filetype": "jp2",
+   "parentobject": "1206616",
+   "title": "54784_460",
+   "find": "1206610.jp2"
+  }
+ ]
+}

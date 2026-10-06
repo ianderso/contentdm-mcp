@@ -1,0 +1,20 @@
+[
+ {
+  "alias": "/p16007coll41",
+  "name": "Athens County Gazette",
+  "path": "/cdm/sites/16007/data/p16007coll41",
+  "secondary_alias": "14"
+ },
+ {
+  "alias": "/p16007coll107",
+  "name": "Chagrin Falls Exponent",
+  "path": "/cdm/sites/16007/data/p16007coll107",
+  "secondary_alias": "p16007coll107"
+ },
+ {
+  "alias": "/p15005coll1",
+  "name": "State Library of Ohio County Atlases",
+  "path": "/cdm/sites/16007/data/p15005coll1",
+  "secondary_alias": "p15005coll1"
+ }
+]

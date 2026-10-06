@@ -1,0 +1,50 @@
+[
+ {
+  "alias": "/photo",
+  "name": "Alabama Photographs and Pictures Collection",
+  "path": "/cdm/sites/17217/data/photo",
+  "secondary_alias": "photo"
+ },
+ {
+  "alias": "/voices",
+  "name": "Alabama Textual Materials Collection",
+  "path": "/cdm/sites/17217/data/voices",
+  "secondary_alias": "voices"
+ },
+ {
+  "alias": "/records",
+  "name": "Alabama Audiovisual Collection",
+  "path": "/cdm/sites/17217/data/records",
+  "secondary_alias": "records"
+ },
+ {
+  "alias": "/incarceration",
+  "name": "Alabama Incarceration Records",
+  "path": "/cdm/sites/17217/data/incarceration",
+  "secondary_alias": "incarceration"
+ },
+ {
+  "alias": "/voter1867",
+  "name": "1867 Voter Registration books",
+  "path": "/cdm/sites/17217/data/voter1867",
+  "secondary_alias": "voter1867"
+ },
+ {
+  "alias": "/p17217coll3",
+  "name": "Alabama World War I Service Records",
+  "path": "/cdm/sites/17217/data/p17217coll3",
+  "secondary_alias": "p17217coll3"
+ },
+ {
+  "alias": "/goldstar",
+  "name": "Alabama World War I Gold Star Files",
+  "path": "/cdm/sites/17217/data/goldstar",
+  "secondary_alias": "goldstar"
+ },
+ {
+  "alias": "/p17217coll8",
+  "name": "Montgomery County Archives",
+  "path": "/cdm/sites/17217/data/p17217coll8",
+  "secondary_alias": "p17217coll8"
+ }
+]

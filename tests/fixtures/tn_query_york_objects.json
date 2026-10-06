@@ -1,0 +1,49 @@
+{
+ "pager": {
+  "start": "1",
+  "maxrecs": "10",
+  "total": 4
+ },
+ "records": [
+  {
+   "collection": "/p15138coll54",
+   "pointer": 7724,
+   "filetype": "cpd",
+   "parentobject": -1,
+   "title": "1972 Death index (L-Z)",
+   "date": "",
+   "descri": "Volume 2 of the 1972 death index for Tennessee.",
+   "find": "7725.cpd"
+  },
+  {
+   "collection": "/p15138coll54",
+   "pointer": 1229068,
+   "filetype": "cpd",
+   "parentobject": -1,
+   "title": "1955-1959 Death Index (T460-Z)",
+   "date": "",
+   "descri": "Volume 8 of the 1955-1959 death index for Tennessee.",
+   "find": "1229069.cpd"
+  },
+  {
+   "collection": "/p15138coll54",
+   "pointer": 1206616,
+   "filetype": "cpd",
+   "parentobject": -1,
+   "title": "1960-1964 Death Index (T300R-Z)",
+   "date": "",
+   "descri": "Volume 8 of the 1960-1964 death index for Tennessee.",
+   "find": "1206617.cpd"
+  },
+  {
+   "collection": "/p15138coll54",
+   "pointer": 101976,
+   "filetype": "cpd",
+   "parentobject": -1,
+   "title": "Certificate_003503",
+   "date": "",
+   "descri": "Death certificate #003503.",
+   "find": "101977.cpd"
+  }
+ ]
+}

@@ -1,0 +1,422 @@
+# CONTENTdm instances that hold US state and county records.
+#
+# Every `supported` entry answered dmGetCollectionList with JSON on the date
+# in `checked`, and the collection count is what it answered then. Entries
+# that are not supported say where the institution went, so a search can say
+# so rather than come back empty.
+#
+# Fields
+#   key          the name tools take as `instance`
+#   institution  who runs the site (the holding institution of an item can be
+#                another: aggregator sites carry contributors' collections)
+#   state        two-letter postal code
+#   kind         state archives | state library | state network | university
+#   base_url     the public site, which is what item URLs and citations use
+#   api_base     a second address for the same site, used for API and image
+#                requests when the public host cannot be (see `note`)
+#   platform     contentdm-classic | contentdm-new | quartex | islandora |
+#                preservica | recollect | other
+#   status       supported | moved | blocked
+#   checked      the day this entry was verified live
+#   collections  how many collections the site listed that day
+#   holds        what is there for a genealogist, from its collection names
+#   terms        what its rights statements say about reuse, where seen
+#   moved_to     for a site that left CONTENTdm, where its material is now
+#   note         anything else that changes how to use it
+#
+# Add an entry only after calling the site's API yourself. See CONTRIBUTING.md.
+
+- key: al-adah
+  institution: Alabama Department of Archives and History
+  state: AL
+  kind: state archives
+  base_url: https://digital.archives.alabama.gov
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 68
+  holds: >-
+    1867 and 1875 voter registration books; World War I service records and
+    Gold Star files; Alabama Supreme Court case files; incarceration records;
+    governors' papers; Confederate regimental history files; letters and
+    diaries, some with volunteer transcripts; Montgomery County Archives and
+    other local contributors.
+  terms: >-
+    Items say they may be used for private study, scholarship or research;
+    publication needs ADAH's use agreement.
+
+- key: ga-vault
+  institution: Georgia Archives (Virtual Vault)
+  state: GA
+  kind: state archives
+  base_url: https://vault.georgiaarchives.org
+  api_base: https://cdm17154.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 53
+  holds: >-
+    Georgia death certificates; Confederate pension applications and
+    enlistment oaths; colonial wills, conveyances and estate records; county
+    and marriage records from microfilm; Wilkes County court and estate
+    records; Chatham County deed books; headright and bounty plats; 1864
+    militia enrollment lists; card indexes to the Archives' microfilm.
+  terms: >-
+    Items carry a "Cite as" line naming the record group; use it.
+  note: >-
+    vault.georgiaarchives.org sends an incomplete certificate chain, which
+    Python's TLS refuses, so requests go to the site's OCLC address; item URLs
+    keep the public one.
+
+- key: tn-tsla
+  institution: Tennessee State Library and Archives (Tennessee Virtual Archive, TeVA)
+  state: TN
+  kind: state archives
+  base_url: https://teva.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 82
+  holds: >-
+    Tennessee birth, delayed birth, death, marriage and divorce records and
+    their annual indexes; World War I veterans' questionnaires and Gold Star
+    records; Civil War military records; military muster rolls; Cherokee
+    claims; Mount Olivet Cemetery records; early governors' papers.
+  terms: >-
+    Mostly "No Copyright - United States"; high-resolution copies are ordered
+    from TSLA.
+  note: >-
+    The vital-records indexes are long compound objects whose "Transcript"
+    field is machine OCR of each page: search them with page_hits=true.
+
+- key: oh-memory
+  institution: Ohio Memory (Ohio History Connection and State Library of Ohio)
+  state: OH
+  kind: state network
+  base_url: https://ohiomemory.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 202
+  holds: >-
+    Ohio newspapers with OCR text; county records-centre collections (Greene,
+    Licking); Cincinnati Federal Land Office records; the State Library's
+    county atlases; obituary files; local libraries' and societies'
+    collections.
+  terms: >-
+    Online access is for research only; reproduction requests go to the Ohio
+    History Connection.
+
+- key: il-ida
+  institution: Illinois Digital Archives (Illinois State Library, Secretary of State)
+  state: IL
+  kind: state library
+  base_url: https://www.idaillinois.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 265
+  holds: >-
+    Register of Illinois prison records; Madison County naturalization
+    records; cemetery interment records; federal township plats; local
+    newspapers and city directories contributed by Illinois libraries.
+  terms: >-
+    Copyright stays with each collection's owner; the State Library only
+    displays it.
+
+- key: in-isl
+  institution: Indiana State Library (Indiana Memory)
+  state: IN
+  kind: state library
+  base_url: https://indianamemory.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 160
+  holds: >-
+    County public records (Adams County among them); selections from the
+    Indiana Archives and Records Administration; the State Library's
+    genealogy and newspaper collections; Sullivan County Civil War records;
+    local libraries' and genealogical societies' collections.
+  terms: >-
+    Set by each contributor; many items are "No Copyright - United States".
+
+- key: mo-mdh
+  institution: Missouri Digital Heritage (Missouri State Archives and State Library)
+  state: MO
+  kind: state archives
+  base_url: https://mdh.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 189
+  holds: >-
+    Governors' records; Missouri Supreme Court reports; Missouri vital
+    statistics; county histories and plat books; World War I biography and
+    service records; newspapers.
+  terms: >-
+    Newspaper pages may be searched and displayed freely; publication needs
+    permission.
+  note: >-
+    The State Archives' death certificates (1910 onward) and other indexes
+    are separate databases on sos.mo.gov, not here.
+
+- key: ky-kdl
+  institution: Kentucky Digital Library (Kentucky Virtual Library)
+  state: KY
+  kind: state network
+  base_url: https://kdl.kyvl.org
+  api_base: https://cdm17244.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 60
+  holds: >-
+    Public libraries' newspaper and obituary indexes (the Louisville
+    newspaper obituary index, 1918-1987; the Northern Kentucky newspaper
+    index); local newspapers, photographs and yearbooks.
+  terms: Set by each contributing library.
+  note: >-
+    kdl.kyvl.org sends an incomplete certificate chain, which Python's TLS
+    refuses, so requests go to the site's OCLC address.
+
+- key: ct-csl
+  institution: Connecticut State Library
+  state: CT
+  kind: state library
+  base_url: https://cslib.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 5
+  holds: >-
+    State publications, law and legislation, aerial photographs and the WPA
+    architectural survey. Few record images: most State Archives series are
+    not here.
+
+- key: ok-odl
+  institution: Oklahoma Department of Libraries (Digital Prairie, with the Oklahoma State Archives)
+  state: OK
+  kind: state archives
+  base_url: https://digitalprairie.ok.gov
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 18
+  holds: >-
+    Confederate pension applications and pension cards; territorial records;
+    governors' records; state agency publications and audits.
+  terms: >-
+    Pension records are "No Copyright - United States" and carry a Citation
+    field naming the record group.
+
+- key: ak-ada
+  institution: Alaska's Digital Archives (Alaska State Library, Alaska State Archives and partners)
+  state: AK
+  kind: state network
+  base_url: https://vilda.alaska.edu
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 17
+  holds: >-
+    Alaska State Library historical collections and Alaska State Archives
+    material, mostly photographs, with documents and moving images from the
+    University of Alaska and local museums.
+  terms: >-
+    Contact the holding archive before reuse; items carry a "Required
+    citation".
+
+- key: ar-asa
+  institution: Arkansas State Archives
+  state: AR
+  kind: state archives
+  base_url: https://ar-digital.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 18
+  holds: >-
+    Government records, manuscript collections, maps, Arkansas Digital
+    Newspaper Project pages and genealogy research aids.
+  note: >-
+    The "County Records" collection was listed but held no items on the day
+    this was checked.
+
+- key: nv-nsla
+  institution: Nevada State Library, Archives and Public Records (Nevada Library Cooperative site)
+  state: NV
+  kind: state archives
+  base_url: https://nvlibrarycoop.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 53
+  holds: >-
+    Nevada Territory censuses and census reports; land patents; territorial
+    supreme court cases and officers' papers; World War I service cards;
+    biennial reports of the state prison, orphanage and hospital; newspapers.
+
+- key: de-ddl
+  institution: Delaware Division of Libraries (with the Delaware Public Archives)
+  state: DE
+  kind: state library
+  base_url: https://cdm16397.contentdm.oclc.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 34
+  holds: >-
+    A Delaware Public Archives collection (deed records among it); Laws of
+    Delaware; state agency annual reports; local libraries' and museums'
+    collections.
+
+- key: nd-dh
+  institution: Digital Horizons (North Dakota State Library, State Historical Society of North Dakota and partners)
+  state: ND
+  kind: state network
+  base_url: https://digitalhorizonsonline.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 50
+  holds: >-
+    North Dakota county histories, atlases and plat books (State Library);
+    the State Historical Society's photograph collections; German-Russian
+    heritage material.
+  terms: State Library items are "No Copyright - United States".
+
+- key: wa-wrh
+  institution: Washington Rural Heritage (Washington State Library)
+  state: WA
+  kind: state library
+  base_url: https://www.washingtonruralheritage.org
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 57
+  holds: >-
+    Local libraries' county heritage collections: photographs, oral
+    histories, local documents and newspapers. Little government record.
+  terms: >-
+    Mostly "In Copyright - Educational Use Permitted"; other uses need the
+    contributing library's permission.
+
+- key: nm-unm
+  institution: New Mexico Digital Collections (University of New Mexico, with the New Mexico State Records Center and Archives)
+  state: NM
+  kind: university
+  base_url: https://econtent.unm.edu
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 221
+  holds: >-
+    State Records Center and Archives collections (Adjutant General,
+    Department of Corrections, Commission of Public Records); Catron land
+    grant cases; the university's southwest research collections.
+
+- key: in-bsu
+  institution: Ball State University Digital Media Repository
+  state: IN
+  kind: university
+  base_url: https://dmr.bsu.edu
+  platform: contentdm-classic
+  status: supported
+  checked: 2026-10-06
+  collections: 343
+  holds: >-
+    Delaware County, Indiana: courthouse collection, poor relief records,
+    family name index cards and aerial plat maps; Muncie newspapers and
+    church records.
+  terms: >-
+    Commercial use needs Ball State's permission; many items are in
+    copyright.
+
+# --------------------------------------------------------------------------
+# Institutions that have left CONTENTdm, or that no client can reach.
+# --------------------------------------------------------------------------
+
+- key: nc-sanc
+  institution: State Archives of North Carolina (North Carolina Digital Collections)
+  state: NC
+  kind: state archives
+  base_url: https://digital.ncdcr.gov
+  platform: quartex
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://digital.ncdcr.gov (now a Quartex site)
+  note: >-
+    The classic API address answers 403 with an HTML page. Quartex publishes
+    IIIF manifests at iiif.quartexcollections.com/ncdcr/iiif/{id}/manifest;
+    its search API is undocumented.
+
+- key: pa-power
+  institution: POWER Library, Pennsylvania Photos and Documents (Office of Commonwealth Libraries)
+  state: PA
+  kind: state library
+  base_url: https://digitalarchives.powerlibrary.org
+  platform: islandora
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://digitalarchives.powerlibrary.org/papd/ (Islandora)
+
+- key: sd-sdsa
+  institution: South Dakota State Archives (South Dakota Digital Archives)
+  state: SD
+  kind: state archives
+  base_url: https://sddigitalarchives.contentdm.oclc.org
+  platform: preservica
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://histsd.access.preservica.com
+  note: >-
+    The old CONTENTdm site still answers, with zero collections.
+
+- key: id-ishs
+  institution: Idaho State Historical Society (Idaho State Archives)
+  state: ID
+  kind: state archives
+  base_url: https://idahohistory.contentdm.oclc.org
+  platform: preservica
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://ishs.access.preservica.com
+  note: >-
+    The old CONTENTdm site still answers, with zero collections.
+
+- key: wi-whs
+  institution: Wisconsin Historical Society
+  state: WI
+  kind: state archives
+  base_url: https://content.wisconsinhistory.org
+  platform: other
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://www.wisconsinhistory.org (its own site)
+  note: Every address on the old host redirects to wisconsinhistory.org's 404 page.
+
+- key: mt-mmp
+  institution: Montana Memory Project (Montana State Library and partners)
+  state: MT
+  kind: state library
+  base_url: https://mtmemory.org
+  platform: recollect
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://www.mtmemory.org (now the Montana History Portal, on Recollect)
+
+- key: az-amp
+  institution: Arizona Memory Project (Arizona State Library, Archives and Public Records)
+  state: AZ
+  kind: state archives
+  base_url: https://azmemory.azlibrary.gov
+  platform: other
+  status: moved
+  checked: 2026-10-06
+  moved_to: https://azmemory.azlibrary.gov (no longer CONTENTdm)
+  note: >-
+    The classic API address answers 404 "File not found.", and item addresses
+    (/nodes/view/...) are another platform's. Behind Cloudflare, it answers
+    many scripted requests with a challenge (403, "Just a moment..."). Open
+    it in a browser.
